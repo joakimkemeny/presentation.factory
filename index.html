@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Running a real factory on WebSockets | Presentation</title>
+
+    <meta name="author" content="Joakim Kemeny">
+    <meta name="viewport" content="width=1024">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="shortcut icon" href="img/icons/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/icons/iphone.png" sizes="57x57">
+    <link rel="apple-touch-icon-precomposed" href="img/icons/iphone_2x.png" sizes="114x114">
+    <link rel="apple-touch-icon-precomposed" href="img/icons/ipad.png" sizes="72x72">
+    <link rel="apple-touch-icon-precomposed" href="img/icons/ipad_2x.png" sizes="144x144">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <div id="impress">
+
+        <!-- Intro -------------------------------------------------------------------------------->
+
+        <div id="intro-1" class="step" data-x="0" data-y="0">
+            <h2>Running a real factory on</h2>
+            <h1>WebSockets</h1>
+            <h3>Joakim Kemeny</h3>
+            <h4>@joakimkemeny</h4>
+            <img src="img/omegapoint.png" class="logotype">
+            <img src="img/backhammar.png" class="factory">
+            <canvas id="intro-smoke" class="smoke" height="744" width="1000"></canvas>
+
+            <div class="notes">
+                <p>
+                    Hello and welcome to my presentation about running a real factory on WebSockets.
+                </p>
+                <p>
+                    Most of the presentations I hear about HTML5 and new web technologies are
+                    focused on games, markup semantics, cool stuff like audio and video and maybe
+                    some theoretical presentations on how WebSockets will be used in the future.
+                    I thought it would be a good idea to show how some of the new technologies that
+                    we have available today can be used to create something quite different.
+                </p>
+                <p>
+                    My name is Joakim Kemeny and I work as a consultant at Omegapoint here in
+                    Gothenburg. My native tongue is Java but in the last couple of years I have
+                    specialized more and more on front end development so now it's mostly
+                    JavaScript, CSS and maybe some Objective-C but as you will see in this
+                    presentation they are connected so you will see both some Javacode as well as
+                    JavaScript.
+                </p>
+                <p>
+                    So this presentation is based on the project that I'm currently working on and
+                    I will tell you a little bit more about that later but before we get too
+                    technical we need to answer the following question.
+                </p>
+                <p>
+                    What is a real factory?
+                </p>
+            </div>
+        </div>
+
+        <!-- What is a factory -------------------------------------------------------------------->
+
+        <div id="factory-1" class="step invisible" data-x="-320" data-y="120" data-scale="0.08">
+            <div class="center">
+                <h1>What is a real factory?</h1>
+            </div>
+
+            <div class="notes">
+                <p>
+                    Well, there are all kinds of factories. Behind me you can see the boiler of a
+                    paper mill. It's actually the silhouette of the paper mill in Bäckhammar where I
+                    grew up and where I earned my living during the summers. It doesn't quite make
+                    me an expert in factories but at least I know what a factory can smell like.
+                </p>
+                <p>
+                    So there are many different types of factories but one thing they all have in
+                    common is hardware.
+                </p>
+            </div>
+        </div>
+        <div id="factory-2" class="step invisible" data-x="-320" data-y="120" data-scale="0.08">
+            <div class="center">
+                <h1>What is a real factory?</h1>
+            </div>
+            <div class="box ballon ballon-up ballon1">Hardware</div>
+
+            <div class="notes">
+                <p>
+                    And hardware can be all kind of things.
+                </p>
+            </div>
+        </div>
+        <div id="factory-3" class="step invisible" data-x="-320" data-y="120" data-scale="0.08">
+            <div class="center">
+                <h1>What is a real factory?</h1>
+            </div>
+            <div class="box ballon ballon-up ballon1">Hardware</div>
+            <div class="flash flash1">Silos</div>
+            <div class="flash flash2">Pipes</div>
+            <div class="flash flash3">Engines</div>
+            <div class="flash flash4">Mixers</div>
+            <div class="flash flash5">Tambours</div>
+            <div class="flash flash6">Boilers</div>
+            <div class="flash flash7">Conveyor Belts</div>
+            <div class="flash flash8">Cranes</div>
+            <div class="flash flash9">Winders</div>
+            <div class="flash flash10">PLCs</div>
+            <div class="flash flash11">Lathes</div>
+            <div class="flash flash12">Scales</div>
+            <div class="flash flash13">I/O Units</div>
+            <div class="flash flash14">Coffee Makers</div>
+
+            <div class="notes">
+                <p>
+                    Silos, Pipes, Mixers, Conveyor belts... Coffee Makers. Yes all kinds of
+                    different hardware. But when I will talk about a factory today I mostly care
+                    about these two.
+                </p>
+            </div>
+        </div>
+        <div id="factory-4" class="step invisible" data-x="-320" data-y="120" data-scale="0.08">
+            <div class="center">
+                <h1>What is a real factory?</h1>
+            </div>
+            <div class="box ballon ballon-up ballon1">Hardware</div>
+            <div class="flash flash10">PLCs</div>
+            <div class="flash flash13">I/O Units</div>
+
+            <div class="notes">
+                <p>
+                    ...the Input/Output units and the Progammable logic controllers. This IS a
+                    factory to me.
+                </p>
+                <p>
+                    The I/O units lets me talk to the hardware in the factory, it lets me read the
+                    current value of a scale, it lets me send commands such as empty scale. And this
+                    can be quite helpful.
+                </p>
+                <p>
+                    The PLC is used to control I/O units and to create sequences that actually can
+                    be used to produce something useful instead of just filling and emptying scales
+                    at random all day.
+                </p>
+                <p>
+                    The other half of factory is the software.
+                </p>
+            </div>
+        </div>
+        <div id="factory-5" class="step invisible" data-x="-320" data-y="120" data-scale="0.08">
+            <div class="center">
+                <h1>What is a real factory?</h1>
+            </div>
+            <div class="box ballon ballon-up ballon1">Hardware</div>
+            <div class="box ballon ballon-down ballon2">Software</div>
+            <div class="flash flash10">PLCs</div>
+            <div class="flash flash13">I/O Units</div>
+
+            <div class="notes">
+                <p>
+                    And this is what I and I guess most of you do all day long. We create software.
+                    And the software in the case of a factory can be used to control the factory,
+                    to handle customers and orders, analyze samples of what the factory produces
+                    and a whole lot of other things.
+                </p>
+                <p>
+                    This is what I will talk about today. We obviously need to talk the the PLCs but
+                    how that can be done in a smart way is a subject for an other time so I won't
+                    touch that today.
+                </p>
+                <p>
+                    So let's see what I'm going to cover today.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scope -------------------------------------------------------------------------------->
+
+        <div id="scope-1" class="step" data-x="2000" data-y="0">
+            <ul class="option-list">
+                <li>
+                    <span>1</span>Manage orders
+                    <span>List orders, Add order, Cancel order</span>
+                </li>
+            </ul>
+
+            <div class="notes">
+                <p>
+                    I am going to cover three things. First I'm going to talk about managing orders.
+                    List, add and cancel for instance. I guess that this is not what you came
+                    for but it will lay the ground for the rest of the presentation and I actually
+                    think that you will find this part to be more interesting than you think.
+                </p>
+            </div>
+        </div>
+        <div id="scope-2" class="step invisible" data-x="2000" data-y="0">
+            <ul class="option-list">
+                <li>
+                    <span>1</span>Manage orders
+                    <span>List orders, Add order, Cancel order</span>
+                </li>
+                <li>
+                    <span>2</span>Produce stuff
+                    <span>Controlling the factory and monitor its state</span>
+                </li>
+            </ul>
+
+            <div class="notes">
+                <p>
+                    Next I will be talking about producing stuff. This is where it will start to
+                    look like a factory and since this whole presentation will be based upon demos
+                    you get to see both the code and the actual result running.
+                </p>
+            </div>
+        </div>
+        <div id="scope-3" class="step invisible" data-x="2000" data-y="0">
+            <ul class="option-list">
+                <li>
+                    <span>1</span>Manage orders
+                    <span>List orders, Add order, Cancel order</span>
+                </li>
+                <li>
+                    <span>2</span>Produce stuff
+                    <span>Controlling the factory and monitor its state</span>
+                </li>
+                <li>
+                    <span>3</span>Create a UI
+                    <span>Shouldn't be that hard</span>
+                </li>
+            </ul>
+
+            <div class="notes">
+                <p>
+                    And finally I will show you how you can create a UI to handle this. And it
+                    shouldn't that hard, right?
+                </p>
+                <p>
+                    I will be creating the UI and producing stuff at the same time so they will not
+                    be as separated as they are in this slide.
+                </p>
+                <p>
+                    I hope this sounds interesting cause I've already taken up some of your time
+                    so let's get started for real.
+                </p>
+            </div>
+        </div>
+
+        <!-- Order architecture ------------------------------------------------------------------->
+
+        <div id="architecture-1" class="step" data-x="3500" data-y="0">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections"></div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+
+            <div class="notes">
+                <p>
+                    Let's start with managing order. This is of course the kind of systems that I
+                    think that a lot of you have build to some degree.
+                </p>
+                <p>
+                    It usually involves a client and a server and the order system in the factory
+                    I'm building today is no different.
+                </p>
+                <p>
+                    The client can send requests to the server and get a response.
+                </p>
+            </div>
+        </div>
+        <div id="architecture-2" class="step invisible" data-x="3500" data-y="0">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+
+            <div class="notes">
+                <p>
+                    So the client can ask for a list of orders,
+                </p>
+            </div>
+        </div>
+        <div id="architecture-3" class="step invisible" data-x="3500" data-y="0">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+
+            <div class="notes">
+                <p>
+                    create a new order,
+                </p>
+            </div>
+        </div>
+        <div id="architecture-4" class="step invisible" data-x="3500" data-y="0">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+
+            <div class="notes">
+                <p>
+                    update an order
+                </p>
+            </div>
+        </div>
+        <div id="architecture-5" class="step invisible" data-x="3500" data-y="0">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">deleteOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+
+            <div class="notes">
+                <p>
+                    and even delete an order.
+                </p>
+                <p>
+                    There is nothing special about this at all and it can be solved using a simple
+                    REST API as I guess that many of you are familiar with. It doesn't matter what
+                    kind of technology you use on the server side here, choose the one you are
+                    comportable with. But in these demos I will use Spring MVC.
+                </p>
+            </div>
+        </div>
+
+        <!-- Rest API ----------------------------------------------------------------------------->
+
+        <div id="rest-1" class="step" data-x="5000" data-y="0">
+            <h1 class="small">Spring MVC</h1>
+            <pre><code data-language="java" data-src="src/rest-1.java"></code></pre>
+
+            <div class="notes">
+                <p>
+                    So we have a normal Spring MVC controllers. It produces JSON and not HTML and
+                    this is very important because we have not discussed how to create the UI yet.
+                    Maybe it's only web, maybe we will create a native iOS or Android client.
+                    Maybe the web isn't at all suited to run a factory so we need to create a normal
+                    windows application? The server should not care about that.
+                </p>
+                <p>
+                    Describe list...
+                </p>
+                <p>
+                    Describe create...
+                </p>
+            </div>
+        </div>
+        <div id="rest-2" class="step" data-x="5000" data-y="600">
+            <pre><code data-language="java" data-src="src/rest-2.java"></code></pre>
+
+            <div class="notes">
+                <p>
+                    Describe update...
+                </p>
+                <p>
+                    Describe delete...
+                </p>
+                <p>
+                    So that is our server API.
+                </p>
+            </div>
+        </div>
+
+        <!-- Order architecture ------------------------------------------------------------------->
+
+        <div id="architecture-6" class="step invisible" data-x="3500" data-y="0">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">deleteOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+
+            <div class="notes">
+                <p>
+                    So that was our server API and it was pretty strait forward.
+                </p>
+                <p>
+                    What happens when you add an other client to this picture?
+                </p>
+            </div>
+        </div>
+        <div id="architecture-7" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">deleteOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections"></div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+
+            <div class="notes">
+                <p>
+                    Let's say that the first client is an administrator who enters order all day
+                    long and the second client is an operator who is in charge taking the order and
+                    making sure they get produced.
+                </p>
+                <p>
+                    Let's start over.
+                </p>
+            </div>
+        </div>
+        <div id="architecture-8" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+
+            </div>
+            <div class="notes">
+                <p>
+                    Well first of all, both can list orders. Nothing special there.
+                </p>
+            </div>
+        </div>
+        <div id="architecture-9" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+
+            <div class="notes">
+                <p>
+                    But what happens when the administrator creates a new order?
+                </p>
+                <p>
+                    The operator will probably want to know. Wouldn't it be great if the server
+                    could tell the operator that a new order was created?
+                </p>
+            </div>
+        </div>
+        <div id="architecture-10" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right line1">orderCreated</div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+
+            <div class="notes">
+                <p>
+                    The same goes for the other commands as well.
+                </p>
+            </div>
+        </div>
+        <div id="architecture-11" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right line1">orderCreated</div>
+                <div class="uml-line uml-arrow-right line2">orderUpdated</div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+        </div>
+        <div id="architecture-12" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">deleteOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right line1">orderCreated</div>
+                <div class="uml-line uml-arrow-right line2">orderUpdated</div>
+                <div class="uml-line uml-arrow-right line3">orderDeleted</div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+
+            <div class="notes">
+                <p>
+                    And of course it should go both ways.
+                </p>
+            </div>
+        </div>
+        <div id="architecture-13" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">deleteOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-left line4">orderCreated</div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right line1">orderCreated</div>
+                <div class="uml-line uml-arrow-right line2">orderUpdated</div>
+                <div class="uml-line uml-arrow-right line3">orderDeleted</div>
+                <div class="uml-line uml-arrow-left">createOrder</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+
+            <div class="notes">
+                <p>
+                    That leads us to the seconds question for today...
+                </p>
+            </div>
+        </div>
+
+        <!-- WebSockets --------------------------------------------------------------------------->
+
+        <div id="websockets-1" class="step" data-x="6500" data-y="0">
+            <div class="center">
+                <h1>What is WebSockets?</h1>
+            </div>
+
+            <div class="notes">
+                <p>
+                    And of course it should go both ways.
+                </p>
+            </div>
+        </div>
+        <div id="websockets-2" class="step invisible" data-x="6500" data-y="0">
+            <div class="center">
+                <h1>What is WebSockets?</h1>
+                <div class="box ballon ballon-up ballon1">HTML5</div>
+                <div class="box ballon ballon-down ballon2">Firewall friendly</div>
+            </div>
+        </div>
+        <div id="websockets-3" class="step invisible" data-x="6500" data-y="0">
+            <div class="center">
+                <h1>What is WebSockets?</h1>
+                <div class="box ballon ballon-up ballon1">HTML5</div>
+                <div class="box ballon ballon-down ballon2">Firewall friendly</div>
+                <div class="box ballon ballon-down ballon3">Full duplex</div>
+                <div class="box ballon ballon-up ballon4">2 bytes overhead</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/scripts.min.js"></script>
+
+</body>
+</html>
