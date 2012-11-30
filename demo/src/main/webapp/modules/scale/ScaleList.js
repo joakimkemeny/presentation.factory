@@ -34,9 +34,9 @@ define([
                 // Attach event handlers to the view model.
                 toggleActive : function () {
                     if (this.active()) {
-                        webSocket.send("scale:inactivate", {name : this.name()});
+                        webSocket.send("scale:inactivate", { name : this.name() });
                     } else {
-                        webSocket.send("scale:activate", {name : this.name()});
+                        webSocket.send("scale:activate", { name : this.name() });
                     }
                 }
             }, this.el);

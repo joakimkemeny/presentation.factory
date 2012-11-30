@@ -1,0 +1,18 @@
+<header>
+    <h1>Order</h1>
+
+    <div class="actions">
+        <a class="btn btn-large" data-bind="click: close"><i class="icon-remove"></i></a>
+    </div>
+</header>
+<div class="wrapper">
+    <form>
+        <label for="customer">Customer</label>
+        <input id="customer" data-bind="value: customer" type="text">
+        <label for="quantity">Quantity</label>
+        <input id="quantity" data-bind="value: quantity" type="number">
+        <button class="btn btn-large" data-bind="click: save">
+            <i class="icon-ok-sign"></i> Save
+        </button>
+    </form>
+</div>

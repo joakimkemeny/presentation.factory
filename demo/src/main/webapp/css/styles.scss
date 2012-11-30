@@ -1,0 +1,432 @@
+@import "libs/normalize";
+@import "libs/bootstrap";
+@import "libs/fontawesome";
+@import "libs/mixins";
+@import "libs/theme";
+
+.application {
+    @include box-orient-vertical;
+    & > * {
+        @include box-flex(0);
+        &:last-child {
+            @include box-flex(1);
+        }
+    }
+
+    padding: 20px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @media screen and (max-width: 320px) {
+        padding: 5px;
+        position: relative;
+    }
+
+}
+
+.box {
+    @include border-radius(5px);
+
+    background-color: $boxColor;
+    border: 5px solid $boxBorderColor;
+    color: $alternateColor;
+}
+
+.scales {
+    @include box-orient-horizontal;
+    & > * {
+        @include box-flex(3);
+        &:last-child {
+            @include box-flex(4);
+        }
+        @include box-orient-vertical;
+        & > * {
+            @include box-flex(1);
+            &:last-child {
+                @include box-flex(0);
+            }
+        }
+
+        background-color: $formColor;
+        margin-right: 20px;
+        padding: 20px;
+
+        @media screen and (max-width: 320px) {
+            padding: 10px;
+            margin-right: 5px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    padding-bottom: 35px;
+
+    @media screen and (max-width: 320px) {
+        overflow: hidden;
+        padding-bottom: 25px;
+    }
+
+    & > .box > div:last-child {
+        @include border-radius(3px);
+
+        background-color: #d6d6d6;
+        border: 2px solid $boxBorderColor;
+        cursor: pointer;
+        height: 40px;
+        position: relative;
+
+        .filling,
+        .emptying,
+        .text {
+            @include border-radius(2px);
+
+            bottom: 0;
+            font-size: 20px;
+            left: 0;
+            line-height: 40px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+
+            span:first-child {
+                padding-left: 10px;
+            }
+        }
+
+        .filling {
+            background-color: $alternateColor;
+            color: $boxColor;
+            z-index: 2;
+        }
+
+        .emptying {
+            background-color: $alternateColor;
+            color: $boxColor;
+            right: 0;
+            top: auto;
+            z-index: 2;
+        }
+
+        .text {
+            color: black;
+            right: 0;
+            z-index: 1;
+        }
+
+        .flow {
+            background-color: $boxBorderColor;
+            bottom: -22px;
+            height: 22px;
+            left: 10px;
+            position: absolute;
+            width: 9px;
+
+            @media screen and (max-width: 320px) {
+                height: 12px;
+                bottom: -12px;
+            }
+
+            div {
+                @include border-radius-bottomleft(5px);
+
+                border-left: 5px solid $alternateColor;
+                border-bottom: 5px solid $alternateColor;
+                height: 42px;
+                left: 2px;
+                position: absolute;
+                top: 0;
+                width: 1600px;
+
+                @media screen and (max-width: 320px) {
+                    height: 32px;
+                }
+            }
+        }
+    }
+}
+
+.silos {
+    @include box-orient-horizontal;
+    & > * {
+        @include box-flex(1);
+    }
+
+    padding-bottom: 20px;
+    @media screen and (max-width: 320px) {
+        padding-bottom: 10px;
+    }
+
+    & > div {
+        @include border-radius(3px);
+
+        background-color: #d6d6d6;
+        border: 2px solid $boxBorderColor;
+        height: 70px;
+        position: relative;
+        width: 107px;
+        margin-right: 20px;
+
+        @media screen and (max-width: 320px) {
+            margin-right: 10px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .level,
+        .level div,
+        .text {
+            position: absolute;
+            left: 0;
+            height: 66px;
+            bottom: 0;
+            right: 0;
+            line-height: 66px;
+            text-align: center;
+            font-size: 30px;
+            color: black;
+            z-index: 1;
+        }
+        .level {
+            background-color: $alternateColor;
+            height: 50%;
+            overflow: hidden;
+        }
+        .level div {
+            color: $boxColor;
+            height: 66px !important;
+            z-index: 2;
+
+            @media screen and (max-width: 320px) {
+                display: none;
+            }
+        }
+        .text {
+            @media screen and (max-width: 320px) {
+                display: none;
+            }
+        }
+
+    }
+}
+
+.orders {
+    position: relative;
+
+    @media screen and (min-width: 321px) {
+        @include box-orient-horizontal;
+        & > * {
+            @include box-flex(0);
+            &:first-child {
+                @include box-flex(1);
+            }
+        }
+    }
+
+    h1 {
+        color: black;
+        font-size: 30px;
+        font-weight: normal;
+        margin: 0;
+        line-height: 44px;
+
+        @media screen and (max-width: 320px) {
+            font-size: 26px;
+            line-height: 30px;
+        }
+    }
+    th {
+        font-size: 20px;
+        @media screen and (max-width: 320px) {
+            font-size: 14px
+        }
+    }
+    td {
+        color: black;
+        font-size: 20px;
+        line-height: 27px;
+        vertical-align: top;
+
+        @media screen and (max-width: 320px) {
+            font-size: 14px;
+            line-height: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &:last-child {
+            text-align: right;
+
+            @media screen and (max-width: 320px) {
+                overflow: visible;
+                padding: 0;
+                height: 70px;
+                position: relative;
+                width: 0;
+
+                &.readonly {
+                    height: auto;
+                }
+
+                div {
+                    position: absolute;
+                    top: 35px;
+                    width: 270px;
+                    right: 5px;
+                    height: 20px;
+
+                    .btn {
+                        margin-left: 10px;
+                        width: 80px;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    label {
+        font-size: 20px;
+        font-weight: bold;
+
+        @media screen and (max-width: 320px) {
+            font-size: 14px;
+        }
+    }
+
+    input {
+        color: black;
+        font-size: 20px;
+        height: auto;
+        margin-bottom: 20px;
+        width: 100%;
+
+        @media screen and (max-width: 320px) {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 4px 8px;
+    }
+    .btn-large {
+        font-size: 20px;
+        padding: 4px 12px;
+    }
+
+    #order-list {
+        @include box-orient-vertical;
+
+        margin-left: 20px;
+
+        @media screen and (max-width: 320px) {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        header {
+            padding: 20px 20px 15px 5px;
+
+            @media screen and (max-width: 320px) {
+                padding: 10px 0 10px 5px;
+            }
+        }
+    }
+
+    #order-form {
+        @media screen and (max-width: 320px) {
+            @include border-radius(5px);
+
+            background-color: $boxColor;
+            border: 5px solid $boxBorderColor;
+            position: absolute;
+            top: -5px;
+            min-height: 310px;
+            bottom: -5px;
+            right: -5px;
+            left: -5px;
+            width: auto;
+            background-color: $boxColor;
+        } background-color: #eee;
+        border-left: 5px solid #bbb;
+        display: none;
+        width: 300px;
+
+        padding-right: 20px;
+
+        @media screen and (max-width: 320px) {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        header {
+            padding: 20px 0 15px 20px;
+
+            @media screen and (max-width: 320px) {
+                padding: 10px 0 10px 5px;
+            }
+        }
+
+        .wrapper {
+            padding: 20px 0 10px 20px;
+
+            @media screen and (max-width: 320px) {
+                padding: 20px 0 10px 0;
+            }
+
+        }
+    }
+
+    header {
+        @include box-flex(0);
+        @include box-orient-horizontal;
+
+        border-bottom: 1px solid #bbb;
+        padding: 20px 20px 15px 5px;
+
+        h1 {
+            @include box-flex(1);
+        }
+
+        .actions {
+            @include box-flex(0);
+        }
+    }
+
+    .wrapper {
+        @include box-flex(1);
+
+        overflow: auto;
+        padding: 20px 20px 10px 0;
+
+        @media screen and (max-width: 320px) {
+            overflow: visible;
+        }
+    }
+
+    table {
+        width: 100%;
+    }
+
+}
+
+.unit {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.inactive {
+    opacity: 0.2;
+}

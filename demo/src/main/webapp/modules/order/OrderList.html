@@ -1,0 +1,35 @@
+<header>
+    <h1>Orders</h1>
+
+    <div class="actions">
+        <a class="btn btn-large" data-bind="click: add"><i class="icon-plus"></i> New</a>
+    </div>
+</header>
+<div class="wrapper">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: collection">
+        <tr>
+            <td data-bind="text: customer"></td>
+            <td><span data-bind="text: quantity"></span> kg</td>
+            <td data-bind="text: status"></td>
+            <td data-bind="css: {readonly : status() !== 'Received'}">
+                <!-- ko if: status() === 'Received' -->
+                <div>
+                    <button class="btn" data-bind="click: $parent.queue"><i class="icon-play"></i></button>
+                    <button class="btn" data-bind="click: $parent.edit"><i class="icon-edit"></i></button>
+                    <button class="btn" data-bind="click: $parent.delete"><i class="icon-trash"></i></button>
+                </div>
+                <!-- /ko -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
