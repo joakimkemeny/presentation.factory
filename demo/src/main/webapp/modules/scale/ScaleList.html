@@ -1,0 +1,19 @@
+<div class="scales" data-bind="foreach: collection">
+    <div class="box">
+        <div data-bind="attr: {id : 'silo-list-' + name()}">
+            <!-- ko stopBindings: true -->
+            <div class="inner"></div>
+            <!-- /ko -->
+        </div>
+        <div data-bind="css: { inactive: !active() }, click: $parent.toggleActive">
+            <div class="filling" data-bind="visible: !emptying(), style: {width: progress}"><span
+                    data-bind="text: current"></span><span class="unit">kg</span></div>
+            <div class="emptying" data-bind="visible: emptying, style: {height: progress}"></div>
+            <div class="text" data-bind="visible: !emptying()"><span
+                    data-bind="text: current"></span><span class="unit">kg</span></div>
+            <div class="flow" data-bind="visible: emptying">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
