@@ -1,4 +1,4 @@
-package se.joakimkemeny.demo.factory.repository;
+package se.joakimkemeny.demo.factory.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

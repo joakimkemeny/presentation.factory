@@ -1,0 +1,31 @@
+@import "mixins";
+
+/** Variables *************************************************************************************/
+
+$alternateColor: #0091bc;
+$boxColor: #f5f5f5;
+$boxBorderColor: #bbb;
+$formColor: #eee;
+$noteColor: #666;
+$textColor: #000;
+
+/** General styles ********************************************************************************/
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(215, 215, 215);
+    background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background-image: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background-image: -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background-image: -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background-image: radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    color: $textColor;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 30px;
+    -webkit-font-smoothing: antialiased;
+}
