@@ -13,6 +13,8 @@ define([
         render : function () {
             this.$el.html(scaleListTemplate);
 
+            var collection = this.collection;
+
             Knockout.applyBindings({
 
                 // Create the view model for the collection.
@@ -30,6 +32,14 @@ define([
                         return viewModel;
                     }
                 }),
+
+                hidden : function () {
+                    if (this.collection() && this.collection().length > 0) {
+                        return this.collection()[0].hidden();
+                    } else {
+                        return false;
+                    }
+                },
 
                 // Attach event handlers to the view model.
                 toggleActive : function () {

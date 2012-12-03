@@ -1,11 +1,12 @@
 define([
+    "jquery",
     "backbone",
     "knockback",
     "knockout",
     "factory/WebSocket",
     "modules/order/Order",
     "text!modules/order/OrderList.html"
-], function (Backbone, Knockback, Knockout, webSocket, Order, orderListTemplate) {
+], function ($, Backbone, Knockback, Knockout, webSocket, Order, orderListTemplate) {
     "use strict";
 
     var OrderList = Backbone.View.extend({
@@ -25,6 +26,9 @@ define([
                 }),
 
                 // Attach event handlers to the view model.
+                toggleScales : function () {
+                    $.ajax("api/scale/toggle");
+                },
                 add : function () {
                     Backbone.history.navigate("order/add", true);
                 },

@@ -49,4 +49,10 @@ public class ScaleController implements WebSocketDelegate {
     public void inactivateScale(@PathVariable String name) {
         scaleManager.inactivateScale(name);
     }
+
+    @RequestMapping(value = "/api/scale/toggle", method = RequestMethod.GET)
+    @ResponseBody
+    public void hideScales() {
+        scaleManager.toggleScales();
+    }
 }

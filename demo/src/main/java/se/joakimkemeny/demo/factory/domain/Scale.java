@@ -7,16 +7,18 @@ public class Scale {
     private int target;
     private boolean emptying;
     private boolean active;
+    private boolean hidden;
 
     public Scale() {
     }
 
-    public Scale(String name, int current, int target, boolean emptying, boolean active) {
+    public Scale(String name, int current, int target, boolean emptying, boolean active, boolean hidden) {
         this.name = name;
         this.current = current;
         this.target = target;
         this.emptying = emptying;
         this.active = active;
+        this.hidden = hidden;
     }
 
     public String getName() {
@@ -57,5 +59,13 @@ public class Scale {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }

@@ -1,10 +1,11 @@
 define([
+    "jquery",
     "backbone",
     "knockout",
     "factory/WebSocket",
     "modules/scale/ScaleController",
     "modules/order/OrderController"
-], function (Backbone, Knockout, webSocket, ScaleController) {
+], function ($, Backbone, Knockout, webSocket, ScaleController) {
     "use strict";
 
     var Factory = {};
@@ -23,6 +24,16 @@ define([
         }
     };
     Knockout.virtualElements.allowedBindings.stopBindings = true;
+
+    Knockout.bindingHandlers.visibleSlide = {
+        init : function (element, valueAccessor) {
+            $(element).toggle(Knockout.utils.unwrapObservable(valueAccessor()));
+        },
+        update : function (element, valueAccessor) {
+            Knockout.utils.unwrapObservable(valueAccessor()) ? $(element).slideDown() : $(element).slideUp();
+        }
+    };
+    Knockout.virtualElements.allowedBindings.fadeSlide = true;
 
     return Factory;
 });

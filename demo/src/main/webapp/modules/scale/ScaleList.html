@@ -1,4 +1,4 @@
-<div class="scales" data-bind="foreach: collection">
+<div class="scales" data-bind="foreach: collection, visibleSlide: !hidden()">
     <div class="box">
         <div data-bind="attr: {id : 'silo-list-' + name()}">
             <!-- ko stopBindings: true -->

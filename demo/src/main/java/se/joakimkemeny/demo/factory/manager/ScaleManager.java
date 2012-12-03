@@ -19,8 +19,8 @@ public class ScaleManager {
 
     @PostConstruct
     protected void setupScales() {
-        scales.add(new Scale("S1", 0, 0, false, false));
-        scales.add(new Scale("S2", 0, 0, false, false));
+        scales.add(new Scale("S1", 0, 0, false, false, true));
+        scales.add(new Scale("S2", 0, 0, false, false, true));
     }
 
     public List<Scale> listScales() {
@@ -60,6 +60,13 @@ public class ScaleManager {
         Scale scale = getScale(name);
         if (scale != null && scale.isActive()) {
             scale.setActive(false);
+            webSocketManager.broadcast("scale", "updated", scale);
+        }
+    }
+
+    public void toggleScales() {
+        for (Scale scale : scales) {
+            scale.setHidden(!scale.isHidden());
             webSocketManager.broadcast("scale", "updated", scale);
         }
     }
