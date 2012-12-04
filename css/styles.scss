@@ -1,0 +1,443 @@
+@import "libs/normalize";
+@import "libs/impress";
+@import "libs/fontawesome";
+@import "libs/mixins";
+@import "libs/theme";
+
+/** Intro *****************************************************************************************/
+
+#intro-1,
+#outro-1 {
+    h1 {
+        color: $alternateColor;
+        margin-right: 100px;
+        margin-top: 10px;
+        text-align: right;
+    }
+    h2 {
+        color: black;
+        margin-left: 100px;
+        margin-top: 30px;
+    }
+    h3 {
+        margin-left: 500px;
+        margin-top: 120px;
+    }
+    h4 {
+        margin-left: 500px;
+        margin-top: 10px;
+    }
+    .logotype {
+        margin-top: 100px;
+        margin-left: 500px;
+        width: 200px;
+    }
+    .factory {
+        left: -496px;
+        opacity: 0.2;
+        position: absolute;
+        top: 260px;
+    }
+    .smoke {
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+}
+
+#outro-1 {
+    .logotype {
+        margin-top: 50px;
+    }
+}
+
+/** What is a real factory ************************************************************************/
+
+#factory-2,
+#factory-3,
+#factory-4,
+#factory-5,
+#factory-6 {
+    .ballon1 {
+        right: 120px;
+        top: 450px;
+    }
+}
+
+#factory-3 {
+    .flash1 {
+        left: 200px;
+        top: 100px;
+    }
+    .flash2 {
+        right: 100px;
+        top: 250px;
+    }
+    .flash3 {
+        left: 300px;
+        bottom: 100px;
+    }
+    .flash4 {
+        left: 100px;
+        top: 200px;
+    }
+    .flash5 {
+        left: 100px;
+        bottom: 200px;
+    }
+    .flash6 {
+        left: 450px;
+        top: 200px;
+    }
+    .flash7 {
+        right: 200px;
+        top: 100px;
+    }
+    .flash8 {
+        left: 450px;
+        bottom: 240px;
+    }
+    .flash9 {
+        left: 50px;
+        bottom: 40px;
+    }
+    .flash10 {
+        left: 840px;
+        bottom: 100px;
+    }
+    .flash11 {
+        left: 420px;
+        bottom: 40px;
+    }
+    .flash12 {
+        left: 350px;
+        top: 40px;
+    }
+    .flash13 {
+        left: 590px;
+        bottom: 100px;
+    }
+    .flash14 {
+        left: 220px;
+        top: 240px;
+    }
+}
+
+#factory-4,
+#factory-5,
+#factory-6 {
+    .flash10 {
+        @include transition-opacity(0);
+        left: 840px;
+        bottom: 100px;
+    }
+    .flash13 {
+        @include transition-opacity(0);
+        left: 590px;
+        bottom: 100px;
+    }
+}
+
+#factory-5 {
+    .ballon2 {
+        left: 220px;
+        bottom: 450px;
+    }
+}
+
+/** Order architecture ****************************************************************************/
+
+#architecture-1,
+#architecture-2,
+#architecture-3,
+#architecture-4,
+#architecture-5,
+#architecture-6 {
+    padding-left: 224px;
+    padding-top: 121px;
+}
+
+/** Rest API **************************************************************************************/
+
+#rest-1 {
+    pre {
+        @include border-radius-bottom(0);
+
+        border-bottom: 0;
+    }
+}
+
+#rest-2 {
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
+/** Order architecture ****************************************************************************/
+
+#architecture-7,
+#architecture-8,
+#architecture-9,
+#architecture-10,
+#architecture-11,
+#architecture-12,
+#architecture-13 {
+    padding-left: 35px;
+    padding-right: 0;
+    padding-top: 121px;
+
+    .line1 {
+        margin-bottom: 48px;
+        margin-top: 48px;
+    }
+    .line2 {
+        margin-bottom: 48px;
+    }
+    .line3 {
+        margin-bottom: 30px;
+    }
+    .line4 {
+        margin-top: 48px;
+    }
+}
+
+/** WebSockets ************************************************************************************/
+
+#websockets-2 {
+    .ballon1 {
+        left: 200px;
+        bottom: 450px;
+    }
+    .ballon2 {
+        right: 120px;
+        top: 450px;
+    }
+}
+
+#websockets-3 {
+    .ballon1 {
+        right: 120px;
+        bottom: 450px;
+    }
+    .ballon2 {
+        left: 120px;
+        top: 450px;
+    }
+}
+
+#websockets-4 {
+    ul {
+        border-bottom: 1px solid $boxBorderColor;
+        padding-bottom: 20px;
+    }
+}
+
+/** WebSockets Code *******************************************************************************/
+
+#ws-code-2 {
+    pre {
+        @include border-radius-bottom(0);
+
+        border-bottom: 0;
+    }
+}
+
+#ws-code-3 {
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
+#ws-code-4 {
+    pre {
+        @include border-radius-bottom(0);
+
+        border-bottom: 0;
+    }
+}
+
+#ws-code-5 {
+    margin-top: 200px;
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
+#ws-code-6 {
+    pre {
+        @include border-radius-bottom(0);
+
+        border-bottom: 0;
+    }
+}
+
+#ws-code-7 {
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
+/** Factory architecture **************************************************************************/
+
+#architecture-14,
+#architecture-15,
+#architecture-16,
+#architecture-17,
+#architecture-18 {
+    padding-left: 35px;
+    padding-right: 0;
+    padding-top: 121px;
+
+    .line1 {
+        margin-bottom: 48px;
+        margin-top: 48px;
+    }
+    .line2 {
+        margin-bottom: 48px;
+    }
+    .line3 {
+        margin-bottom: 30px;
+    }
+    .line4 {
+        margin-top: 48px;
+    }
+}
+
+#architecture-15,
+#architecture-16,
+#architecture-17,
+#architecture-18 {
+    padding-top: 21px;
+
+    .connections1 {
+        padding-left: 410px;
+    }
+
+    .uml-line {
+        margin-bottom: 50px;
+    }
+
+    .box4 {
+        height: 80px;
+        padding: 10px;
+        width: 925px;
+    }
+}
+
+#backbone-2 {
+    .ballon1 {
+        left: 200px;
+        bottom: 450px;
+    }
+}
+
+#backbone-3,
+#backbone-4,
+#backbone-5,
+#backbone-6 {
+    .ballon1 {
+        right: 150px;
+        top: 450px;
+    }
+    .ballon2 {
+        left: 250px;
+        bottom: 450px;
+    }
+    .ballon3 {
+        right: 230px;
+        bottom: 450px;
+    }
+}
+
+#backbone-7 {
+    pre {
+        @include border-radius-bottom(0);
+
+        border-bottom: 0;
+    }
+}
+
+#backbone-8,
+#backbone-9,
+#backbone-10 {
+    margin-top: 200px;
+    pre {
+        @include border-radius-bottom(0);
+        @include border-radius-top(0);
+
+        border-bottom: 0;
+        border-top: 0;
+    }
+
+}
+
+#backbone-11 {
+    margin-top: 200px;
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
+#backbone-12 {
+    pre {
+        @include border-radius-bottom(0);
+
+        border-bottom: 0;
+    }
+}
+
+#backbone-13 {
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
+#knockout-2,
+#knockout-3,
+#knockout-4 {
+    .ballon1 {
+        left: 150px;
+        bottom: 450px;
+    }
+    .ballon2 {
+        right: 250px;
+        top: 450px;
+    }
+}
+
+#conclusion-2,
+#conclusion-3,
+#conclusion-4 {
+    .ballon1 {
+        left: 150px;
+        bottom: 450px;
+    }
+    .ballon2 {
+        right: 0;
+        top: 450px;
+    }
+    .ballon3 {
+        right: 150px;
+        bottom: 450px;
+    }
+    .ballon4 {
+        left: 200px;
+        bottom: 450px;
+    }
+    .ballon5 {
+        right: 0;
+        top: 450px;
+    }
+}

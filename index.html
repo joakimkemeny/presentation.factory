@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <!-- What is a factory -------------------------------------------------------------------->
+        <!-- What is a real factory --------------------------------------------------------------->
 
         <div id="factory-1" class="step invisible" data-x="-320" data-y="120" data-scale="0.08">
             <div class="center">
@@ -357,19 +357,19 @@
                     and even delete an order.
                 </p>
                 <p>
-                    There is nothing special about this at all and it can be solved using a simple
+                    There is nothing special about this at all and it can be solved using a normal
                     REST API as I guess that many of you are familiar with. It doesn't matter what
                     kind of technology you use on the server side here, choose the one you are
-                    comportable with. But in these demos I will use Spring MVC.
+                    comfortable with. But in these demos I will use Spring MVC.
                 </p>
             </div>
         </div>
 
         <!-- Rest API ----------------------------------------------------------------------------->
 
-        <div id="rest-1" class="step" data-x="5000" data-y="0">
+        <div id="rest-1" class="step" data-x="5190" data-y="0">
             <h1 class="small">Spring MVC</h1>
-            <pre><code data-language="java" data-src="src/rest-1.java"></code></pre>
+            <pre><code data-language="c" data-src="src/rest-1.java"></code></pre>
 
             <div class="notes">
                 <p>
@@ -387,8 +387,8 @@
                 </p>
             </div>
         </div>
-        <div id="rest-2" class="step" data-x="5000" data-y="600">
-            <pre><code data-language="java" data-src="src/rest-2.java"></code></pre>
+        <div id="rest-2" class="step" data-x="5190" data-y="600">
+            <pre><code data-language="c" data-src="src/rest-2.java"></code></pre>
 
             <div class="notes">
                 <p>
@@ -398,7 +398,33 @@
                     Describe delete...
                 </p>
                 <p>
-                    So that is our server API.
+                    So that is our server API. Let's take a first look on our demo applikation that
+                    will use this API.
+                </p>
+            </div>
+        </div>
+
+        <!-- Demo --------------------------------------------------------------------------------->
+
+        <div id="demo-1" class="step" data-x="6690" data-y="0">
+            <div class="browser" data-src="http://localhost:8080"></div>
+
+            <div class="notes">
+                <p>
+                    So this is the demo application that we are playing with today. The application
+                    is going to be handling orders and it will also be able to run these orders
+                    through the factory and follow the order on it's way and also control the
+                    factory to some extent.
+                </p>
+                <p>
+                    So you can list the orders here. The orders have a target customer, a quantity
+                    and a status that will be used later.
+                </p>
+                <p>
+                    We can add a new order here, edit the order and finally also delete an order.
+                </p>
+                <p>
+                    So this is the application that we are going to build on today. Let's go back.
                 </p>
             </div>
         </div>
@@ -662,32 +688,441 @@
 
         <!-- WebSockets --------------------------------------------------------------------------->
 
-        <div id="websockets-1" class="step" data-x="6500" data-y="0">
+        <div id="websockets-1" class="step" data-x="5190" data-y="-1000">
             <div class="center">
                 <h1>What is WebSockets?</h1>
             </div>
 
             <div class="notes">
                 <p>
-                    And of course it should go both ways.
+                    WebSockets is a way to solve this problem since WebSockets can be used to send
+                    commands in both directions. So the server can send information to the client
+                    even if the client haven't asked for it.
                 </p>
             </div>
         </div>
-        <div id="websockets-2" class="step invisible" data-x="6500" data-y="0">
+        <div id="websockets-2" class="step invisible" data-x="5190" data-y="-1000">
             <div class="center">
                 <h1>What is WebSockets?</h1>
-                <div class="box ballon ballon-up ballon1">HTML5</div>
-                <div class="box ballon ballon-down ballon2">Firewall friendly</div>
+                <div class="box ballon ballon-down ballon1">HTML5</div>
+                <div class="box ballon ballon-up ballon2">Firewall friendly</div>
+            </div>
+
+            <div class="notes">
+                <p>
+                    And WebSockets is part of all the new cool technologies that is part of HTML5.
+                    This means that it's available in most modern browsers. The protocol have been
+                    stable since april so implementers are starting to catch up.
+                </p>
+                <p>
+                    So this means no plugins, so no Flash and no Java.
+                </p>
+                <p>
+                    It's also very firewall friendly since a socket connection is initiated over a
+                    normal http request which is upgraded to a websocket.
+                </p>
+                <p>
+                    But the main reason why this is so great for running a factory is...
+                </p>
             </div>
         </div>
-        <div id="websockets-3" class="step invisible" data-x="6500" data-y="0">
+        <div id="websockets-3" class="step invisible" data-x="5190" data-y="-1000">
             <div class="center">
                 <h1>What is WebSockets?</h1>
-                <div class="box ballon ballon-up ballon1">HTML5</div>
-                <div class="box ballon ballon-down ballon2">Firewall friendly</div>
-                <div class="box ballon ballon-down ballon3">Full duplex</div>
-                <div class="box ballon ballon-up ballon4">2 bytes overhead</div>
+                <div class="box ballon ballon-down ballon1">Full duplex</div>
+                <div class="box ballon ballon-up ballon2">2 bytes overhead</div>
             </div>
+
+            <div class="notes">
+                <p>
+                    ...that it's bidirectional and uses full duplex so we can send messages in both
+                    directions at the same time. This is of course necessary to be reliable in this
+                    kind of environment.
+                </p>
+                <p>
+                    And the second thing is that it adds minimal overhead. Just a start and a stop
+                    byte for each message. This may not sounds like a big deal but let's look at an
+                    example to illustrate this.
+                </p>
+            </div>
+        </div>
+        <!--<div id="websockets-4" class="step" data-x="3690" data-y="-2000">
+            <div class="slide">
+                <h1 class="small">Example</h1>
+                <ul>
+                    <li>Headers for this presentation is <b>730 bytes</b></li>
+                    <li>Let the factory have <b>100 objects</b></li>
+                    <li>Let the objects update every second</li>
+                </ul>
+                <ul>
+                    <li>Use HTTP polling = <b>73 000 bytes</b></li>
+                    <li>Using WebSockets = <b>400 bytes</b></li>
+                </ul>
+                <p>Waisted bandwidth = <b>0,55 Mbit/s / client</b></p>
+            </div>
+        </div>-->
+
+        <!-- WebSockets Code ---------------------------------------------------------------------->
+
+        <div id="ws-code-1" class="step" data-x="6690" data-y="-1000">
+            <h1 class="small">WebSocketServlet (Jetty)</h1>
+            <pre><code data-language="c" data-src="src/websocket-1.java"></code></pre>
+        </div>
+        <div id="ws-code-2" class="step" data-x="8190" data-y="-1000">
+            <h1 class="small">WebSocketClient (Jetty)</h1>
+            <pre><code data-language="c" data-src="src/websocket-2.java"></code></pre>
+        </div>
+        <div id="ws-code-3" class="step" data-x="8190" data-y="-430">
+            <pre><code data-language="c" data-src="src/websocket-3.java"></code></pre>
+        </div>
+        <div id="ws-code-4" class="step" data-x="9690" data-y="-1000">
+            <h1 class="small">Protocol</h1>
+            <pre><code data-language="javascript" data-src="src/protocol-1.js"></code></pre>
+        </div>
+        <div id="ws-code-5" class="step" data-x="9690" data-y="-945">
+            <pre><code data-language="javascript" data-src="src/protocol-2.js"></code></pre>
+        </div>
+        <div id="ws-code-6" class="step" data-x="9690" data-y="0">
+            <h1 class="small">Spring MVC</h1>
+            <pre><code data-language="c" data-src="src/controller-1.java"></code></pre>
+        </div>
+        <div id="ws-code-7" class="step" data-x="9690" data-y="570">
+            <pre><code data-language="c" data-src="src/controller-2.java"></code></pre>
+            <p class="links">
+                Get the code at <a href="http://github.com/joakimkemeny">github.com/joakimkemeny</a>
+            </p>
+        </div>
+        <div id="ws-code-8" class="step" data-x="9690" data-y="1570">
+            <h1 class="small">JavaScript</h1>
+            <pre><code data-language="javascript" data-src="src/websocket-1.js"></code></pre>
+        </div>
+
+        <!-- Demo --------------------------------------------------------------------------------->
+
+        <div id="demo-2" class="step" data-x="8190" data-y="1570">
+            <div class="browser" data-src="http://localhost:8080"></div>
+        </div>
+
+        <!-- Backbone.js -------------------------------------------------------------------------->
+
+        <div id="backbone-1" class="step invisible" data-x="6690" data-y="1570">
+            <div class="center">
+                <h1>Backbone.js</h1>
+            </div>
+        </div>
+        <div id="backbone-2" class="step invisible" data-x="6690" data-y="1570">
+            <div class="center">
+                <h1>Backbone.js</h1>
+                <div class="box ballon ballon-down ballon1">MV* library</div>
+            </div>
+        </div>
+        <div id="backbone-3" class="step invisible" data-x="6690" data-y="1570">
+            <div class="center">
+                <h1>Backbone.js</h1>
+                <div class="box ballon ballon-up ballon1">Models / Collections</div>
+            </div>
+        </div>
+        <div id="backbone-4" class="step invisible" data-x="6690" data-y="1570">
+            <div class="center">
+                <h1>Backbone.js</h1>
+                <div class="box ballon ballon-up ballon1">Models / Collections</div>
+                <div class="box ballon ballon-down ballon2">Views</div>
+            </div>
+        </div>
+        <div id="backbone-5" class="step invisible" data-x="6690" data-y="1570">
+            <div class="center">
+                <h1>Backbone.js</h1>
+                <div class="box ballon ballon-up ballon1">Models / Collections</div>
+                <div class="box ballon ballon-down ballon2">Views</div>
+                <div class="box ballon ballon-down ballon3">Routers</div>
+            </div>
+        </div>
+        <div id="backbone-6" class="step invisible" data-x="6690" data-y="1570">
+            <div class="center">
+                <h1>Backbone.js</h1>
+                <div class="box ballon ballon-up ballon1">Models / Collections</div>
+                <div class="box ballon ballon-down ballon2">Views</div>
+                <div class="box ballon ballon-down ballon3">Routers</div>
+            </div>
+            <p class="links">
+                Read more about Backbone at <a href="http://backbonejs.org">backbonejs.org</a>
+            </p>
+        </div>
+        <div id="backbone-7" class="step" data-x="5190" data-y="1570">
+            <h1 class="small">Backbone Models (Collections)</h1>
+            <pre><code data-language="javascript" data-src="src/backbone-1.js"></code></pre>
+        </div>
+        <div id="backbone-8" class="step" data-x="5190" data-y="1835">
+            <pre><code data-language="javascript" data-src="src/backbone-2.js"></code></pre>
+        </div>
+        <div id="backbone-9" class="step" data-x="5190" data-y="1945">
+            <pre><code data-language="javascript" data-src="src/backbone-3.js"></code></pre>
+        </div>
+        <div id="backbone-10" class="step" data-x="5190" data-y="2160">
+            <pre><code data-language="javascript" data-src="src/backbone-4.js"></code></pre>
+        </div>
+        <div id="backbone-11" class="step" data-x="5190" data-y="2305">
+            <pre><code data-language="javascript" data-src="src/backbone-5.js"></code></pre>
+        </div>
+        <div id="backbone-12" class="step" data-x="3690" data-y="2000">
+            <h1 class="small">Backbone Models (Collections)</h1>
+            <pre><code data-language="javascript" data-src="src/backbone-6.js"></code></pre>
+        </div>
+        <div id="backbone-13" class="step" data-x="3690" data-y="2500">
+            <pre><code data-language="javascript" data-src="src/backbone-7.js"></code></pre>
+        </div>
+
+        <!-- Demo --------------------------------------------------------------------------------->
+
+        <div id="demo-3" class="step" data-x="3690" data-y="1000">
+            <div class="browser" data-src="http://localhost:8080"></div>
+        </div>
+
+        <!-- Architecture ------------------------------------------------------------------------->
+
+        <div id="architecture-14" class="step invisible" data-x="3690" data-y="0">
+            <div class="box uml-box box1">
+                Client
+                <span>(admin)</span>
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">listOrders</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">createOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">updateOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right">deleteOrder</div>
+                <div class="uml-line uml-arrow-left uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-left line4">orderCreated</div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">listOrders</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+                <div class="uml-line uml-arrow-right line1">orderCreated</div>
+                <div class="uml-line uml-arrow-right line2">orderUpdated</div>
+                <div class="uml-line uml-arrow-right line3">orderDeleted</div>
+                <div class="uml-line uml-arrow-left">createOrder</div>
+                <div class="uml-line uml-arrow-right uml-line-dotted"></div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+                <span>(operator)</span>
+            </div>
+
+            <div class="notes">
+            </div>
+        </div>
+        <div id="architecture-15" class="step invisible" data-x="3690" data-y="100">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+            </div>
+            <div class="box uml-box box3">
+                Client
+            </div>
+            <div class="uml-vertical-connections connections1">
+                <div class="uml-vertical-line uml-arrow-up"></div>
+                <div class="uml-vertical-line uml-arrow-up"></div>
+                <div class="uml-vertical-line uml-arrow-down"></div>
+                <div class="uml-vertical-line uml-arrow-up"></div>
+            </div>
+            <div class="box uml-box box4">
+                PLC
+            </div>
+
+            <div class="notes">
+            </div>
+        </div>
+        <div id="architecture-16" class="step invisible" data-x="3690" data-y="100">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">siloUpdated</div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">siloUpdated</div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+            </div>
+            <div class="uml-vertical-connections connections1">
+                <div class="uml-vertical-line uml-arrow-up"></div>
+            </div>
+            <div class="box uml-box box4">
+                PLC
+            </div>
+
+            <div class="notes">
+            </div>
+        </div>
+        <div id="architecture-17" class="step invisible" data-x="3690" data-y="100">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">siloUpdated</div>
+                <div class="uml-line uml-arrow-left">scaleUpdated</div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">siloUpdated</div>
+                <div class="uml-line uml-arrow-right">scaleUpdated</div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+            </div>
+            <div class="uml-vertical-connections connections1">
+                <div class="uml-vertical-line uml-arrow-up"></div>
+                <div class="uml-vertical-line uml-arrow-up"></div>
+            </div>
+            <div class="box uml-box box4">
+                PLC
+            </div>
+
+            <div class="notes">
+            </div>
+        </div>
+        <div id="architecture-18" class="step invisible" data-x="3690" data-y="100">
+            <div class="box uml-box box1">
+                Client
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-left">siloUpdated</div>
+                <div class="uml-line uml-arrow-left">scaleUpdated</div>
+            </div>
+            <div class="box uml-box box2">
+                Server
+            </div>
+            <div class="uml-connections">
+                <div class="uml-line uml-arrow-right">siloUpdated</div>
+                <div class="uml-line uml-arrow-right">scaleUpdated</div>
+                <div class="uml-line uml-arrow-left">activateScale</div>
+            </div>
+            <div class="box uml-box box3">
+                Client
+            </div>
+            <div class="uml-vertical-connections connections1">
+                <div class="uml-vertical-line uml-arrow-up"></div>
+                <div class="uml-vertical-line uml-arrow-up"></div>
+                <div class="uml-vertical-line uml-arrow-down"></div>
+            </div>
+            <div class="box uml-box box4">
+                PLC
+            </div>
+
+            <div class="notes">
+            </div>
+        </div>
+
+        <!-- Knockout.js -------------------------------------------------------------------------->
+
+        <div id="knockout-1" class="step invisible" data-x="2000" data-y="1000">
+            <div class="center">
+                <h1>Knockout.js</h1>
+            </div>
+        </div>
+        <div id="knockout-2" class="step invisible" data-x="2000" data-y="1000">
+            <div class="center">
+                <h1>Knockout.js</h1>
+                <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
+            </div>
+        </div>
+        <div id="knockout-3" class="step invisible" data-x="2000" data-y="1000">
+            <div class="center">
+                <h1>Knockout.js</h1>
+                <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
+                <div class="box ballon ballon-up ballon2">Automatic UI Refresh</div>
+            </div>
+        </div>
+        <div id="knockout-4" class="step invisible" data-x="2000" data-y="1000">
+            <div class="center">
+                <h1>Knockout.js</h1>
+                <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
+                <div class="box ballon ballon-up ballon2">Automatic UI Refresh</div>
+            </div>
+            <p class="links">
+                Read more about Knockout at <a href="http://knockoutjs.com">knockoutjs.com</a>
+            </p>
+        </div>
+        <div id="knockout-5" class="step" data-x="2000" data-y="2000">
+            <h1 class="small">Knockout HTML</h1>
+            <pre><code data-language="html" data-src="src/knockout-1.js"></code></pre>
+        </div>
+        <div id="knockout-6" class="step" data-x="2000" data-y="3000">
+            <h1 class="small">Backbone & Knockout</h1>
+            <pre><code data-language="javascript" data-src="src/knockout-2.js"></code></pre>
+            <p class="links">
+                Read more about Knockback at
+                <a href="http://kmalakoff.github.com/knockback">kmalakoff.github.com/knockback</a>
+            </p>
+        </div>
+        <div id="knockout-7" class="step" data-x="2000" data-y="4000">
+            <h1 class="small">Knockout HTML</h1>
+            <pre><code data-language="html" data-src="src/knockout-3.js"></code></pre>
+        </div>
+
+
+        <!-- Demo --------------------------------------------------------------------------------->
+
+        <div id="demo-4" class="step" data-x="3500" data-y="4000">
+            <div class="browser" data-src="http://localhost:8080"></div>
+        </div>
+
+        <!-- Conclusion --------------------------------------------------------------------------->
+
+        <div id="conclusion-1" class="step" data-x="5000" data-y="4000">
+            <div class="center">
+                <h1>Conclusions</h1>
+            </div>
+        </div>
+        <div id="conclusion-2" class="step invisible" data-x="5000" data-y="4000">
+            <div class="center">
+                <h1>Conclusions</h1>
+                <div class="box ballon ballon-down ballon1">It takes some hard work</div>
+                <div class="box ballon ballon-up ballon2">Frameworks need to catch up</div>
+            </div>
+        </div>
+        <div id="conclusion-3" class="step invisible" data-x="5000" data-y="4000">
+            <div class="center">
+                <h1>Conclusions</h1>
+                <div class="box ballon ballon-down ballon3">JavaScript has its limitations</div>
+            </div>
+        </div>
+        <div id="conclusion-4" class="step invisible" data-x="5000" data-y="4000">
+            <div class="center">
+                <h1>Conclusions</h1>
+                <div class="box ballon ballon-down ballon4">It works great…</div>
+                <div class="box ballon ballon-up ballon5">…and it make other UIs feel old</div>
+            </div>
+        </div>
+
+        <!-- Bye ---------------------------------------------------------------------------------->
+
+        <div id="outro-1" class="step" data-x="5000" data-y="5000">
+            <h2>Thank you for coming</h2>
+            <h1>WebSockets</h1>
+            <h3>Joakim Kemeny</h3>
+            <h4>@joakimkemeny</h4>
+            <h4>github.com/joakimkemeny</h4>
+            <img src="img/omegapoint.png" class="logotype">
+            <img src="img/backhammar.png" class="factory">
+            <canvas id="outro-smoke" class="smoke" height="744" width="1000"></canvas>
         </div>
 
     </div>
