@@ -6,28 +6,20 @@ import org.springframework.web.bind.annotation.*;
 import se.joakimkemeny.demo.factory.domain.Order;
 import se.joakimkemeny.demo.factory.factory.Factory;
 import se.joakimkemeny.demo.factory.manager.OrderManager;
-import se.joakimkemeny.demo.factory.websocket.WebSocketDelegate;
-import se.joakimkemeny.demo.factory.websocket.WebSocketManager;
+import se.joakimkemeny.demo.factory.websocket.WebSocketController;
 import se.joakimkemeny.demo.factory.websocket.WebSocketMapping;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
+@WebSocketController("order")
 @Controller
 @RequestMapping(produces = "application/json")
-public class OrderController implements WebSocketDelegate {
+public class OrderController {
 
     @Autowired
     private Factory factory;
     @Autowired
     private OrderManager orderManager;
-    @Autowired
-    private WebSocketManager webSocketManager;
-
-    @PostConstruct
-    private void registerWebSocketDelegate() {
-        webSocketManager.registerDelegateForProtocol(this, "order");
-    }
 
     @WebSocketMapping(command = "list")
     @RequestMapping(value = "/api/order", method = RequestMethod.GET)

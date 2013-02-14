@@ -14,6 +14,8 @@
         <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
 
+    <bean class="se.joakimkemeny.demo.factory.websocket.WebSocketControllerBeanPostProcessor"/>
+
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
 

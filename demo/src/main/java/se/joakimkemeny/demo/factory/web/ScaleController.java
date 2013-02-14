@@ -8,26 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import se.joakimkemeny.demo.factory.domain.Scale;
 import se.joakimkemeny.demo.factory.manager.ScaleManager;
-import se.joakimkemeny.demo.factory.websocket.WebSocketDelegate;
-import se.joakimkemeny.demo.factory.websocket.WebSocketManager;
+import se.joakimkemeny.demo.factory.websocket.WebSocketController;
 import se.joakimkemeny.demo.factory.websocket.WebSocketMapping;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
+@WebSocketController("scale")
 @Controller
 @RequestMapping(produces = "application/json")
-public class ScaleController implements WebSocketDelegate {
+public class ScaleController {
 
     @Autowired
     private ScaleManager scaleManager;
-    @Autowired
-    private WebSocketManager webSocketManager;
-
-    @PostConstruct
-    private void registerWebSocketDelegate() {
-        webSocketManager.registerDelegateForProtocol(this, "scale");
-    }
 
     @WebSocketMapping(command = "list")
     @RequestMapping(value = "/api/scale", method = RequestMethod.GET)

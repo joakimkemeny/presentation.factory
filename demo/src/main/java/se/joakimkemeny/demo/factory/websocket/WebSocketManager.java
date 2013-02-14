@@ -35,10 +35,10 @@ public class WebSocketManager {
     }
 
 
-    private ConcurrentMap<String, WebSocketDelegate> delegates =
-            new ConcurrentHashMap<String, WebSocketDelegate>();
+    private ConcurrentMap<String, Object> delegates =
+            new ConcurrentHashMap<String, Object>();
 
-    public void registerDelegateForProtocol(WebSocketDelegate delegate, String subProtocol) {
+    public void registerDelegateForProtocol(Object delegate, String subProtocol) {
         delegates.putIfAbsent(subProtocol, delegate);
     }
 
@@ -55,7 +55,7 @@ public class WebSocketManager {
             return;
         }
 
-        WebSocketDelegate delegate = delegates.get(command.getProtocol());
+        Object delegate = delegates.get(command.getProtocol());
 
         for (Method method : delegate.getClass().getMethods()) {
             WebSocketMapping mapping = AnnotationUtils.findAnnotation(method, WebSocketMapping.class);
