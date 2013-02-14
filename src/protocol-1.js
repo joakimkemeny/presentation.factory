@@ -1,6 +1,4 @@
 {
     protocol : "order",
-        command
-:
-    "list"
+    command : "list"
 }
