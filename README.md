@@ -1,4 +1,4 @@
-# Presentation.WebSockets.Factory
+# Presentation.Factory
 
 This is the presentation files and demos for the presentation **Running a real factory on WebSockets**
 
@@ -47,5 +47,4 @@ I use the work of great people to create this presentation. Thanks to you all.
 
 * Bartek Szopka ([impress.js](http://bartaz.github.com/impress.js))
 * John Resig ([jQuery](http://jquery.com))
-* Ben Barnett ([jQuery.animate-enhanced](http://github.com/benbarnett/jQuery-Animate-Enhanced))
 * Craig Campbell ([Rainbow](http://rainbowco.de))
