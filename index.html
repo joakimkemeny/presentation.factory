@@ -767,6 +767,14 @@
         <div id="ws-code-1" class="step" data-x="6690" data-y="-1000">
             <h1 class="small">WebSocketServlet (Jetty)</h1>
             <pre><code data-language="c" data-src="src/websocket-1.java"></code></pre>
+            <div class="notes">
+                <p>
+                    There is not official standard for Java yet.
+                </p>
+                <p>
+                    So how does the client look.
+                </p>
+            </div>
         </div>
         <div id="ws-code-2" class="step" data-x="8190" data-y="-1000">
             <h1 class="small">WebSocketClient (Jetty)</h1>
@@ -774,6 +782,11 @@
         </div>
         <div id="ws-code-3" class="step" data-x="8190" data-y="-430">
             <pre><code data-language="c" data-src="src/websocket-3.java"></code></pre>
+            <div class="notes">
+                <p>
+                    So how does this messsage look like.
+                </p>
+            </div>
         </div>
         <div id="ws-code-4" class="step" data-x="9690" data-y="-1000">
             <h1 class="small">Protocol</h1>
@@ -781,6 +794,11 @@
         </div>
         <div id="ws-code-5" class="step" data-x="9690" data-y="-945">
             <pre><code data-language="javascript" data-src="src/protocol-2.js"></code></pre>
+            <div class="notes">
+                <p>
+                    Throw a bunch of annotations at it.
+                </p>
+            </div>
         </div>
         <div id="ws-code-6" class="step" data-x="9690" data-y="0">
             <h1 class="small">Spring MVC</h1>
@@ -791,6 +809,11 @@
             <p class="links">
                 Get the code at <a href="http://github.com/joakimkemeny">github.com/joakimkemeny</a>
             </p>
+            <div class="notes">
+                <p>
+                    Before I get back to the demo I'll show you how it looks on the client side.
+                </p>
+            </div>
         </div>
         <div id="ws-code-8" class="step" data-x="9690" data-y="1570">
             <h1 class="small">JavaScript</h1>
@@ -801,6 +824,12 @@
 
         <div id="demo-2" class="step" data-x="8190" data-y="1570">
             <div class="browser" data-src="http://localhost:8080"></div>
+            <div class="notes">
+                <p>
+                    So now we have created the server part for this application. REST, WebSockets
+                    and Spring MVC. How can we structure the code on the client side.
+                </p>
+            </div>
         </div>
 
         <!-- Backbone.js -------------------------------------------------------------------------->
@@ -815,11 +844,23 @@
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-down ballon1">MV* library</div>
             </div>
+            <div class="notes">
+                <p>
+                    Lot of alternatives, ember, angular, knockout, spine.
+                </p>
+                <p>Next Models</p>
+            </div>
         </div>
         <div id="backbone-3" class="step invisible" data-x="6690" data-y="1570">
             <div class="center">
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
+            </div>
+            <div class="notes">
+                <p>
+                    Triggers events when changed.
+                </p>
+                <p>Next Views...</p>
             </div>
         </div>
         <div id="backbone-4" class="step invisible" data-x="6690" data-y="1570">
@@ -828,6 +869,11 @@
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
                 <div class="box ballon ballon-down ballon2">Views</div>
             </div>
+            <div class="notes">
+                <p>
+                    Views can react to the events that the models trigger.
+                </p>
+            </div>
         </div>
         <div id="backbone-5" class="step invisible" data-x="6690" data-y="1570">
             <div class="center">
@@ -835,6 +881,11 @@
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
                 <div class="box ballon ballon-down ballon2">Views</div>
                 <div class="box ballon ballon-down ballon3">Routers</div>
+            </div>
+            <div class="notes">
+                <p>
+                    Finally routers. And you can read more....
+                </p>
             </div>
         </div>
         <div id="backbone-6" class="step invisible" data-x="6690" data-y="1570">
@@ -847,6 +898,11 @@
             <p class="links">
                 Read more about Backbone at <a href="http://backbonejs.org">backbonejs.org</a>
             </p>
+            <div class="notes">
+                <p>
+                    So this is what it can look like.
+                </p>
+            </div>
         </div>
         <div id="backbone-7" class="step" data-x="5190" data-y="1570">
             <h1 class="small">Backbone Models (Collections)</h1>
@@ -863,6 +919,12 @@
         </div>
         <div id="backbone-11" class="step" data-x="5190" data-y="2305">
             <pre><code data-language="javascript" data-src="src/backbone-5.js"></code></pre>
+            <div class="notes">
+                <p>
+                    But we want to do better. We want to have the collections synced att all times.
+                    For Java we used annotations and for JavaScript we use events.
+                </p>
+            </div>
         </div>
         <div id="backbone-12" class="step" data-x="3690" data-y="2000">
             <h1 class="small">Backbone Models (Collections)</h1>
@@ -938,9 +1000,6 @@
             </div>
             <div class="box uml-box box4">
                 PLC
-            </div>
-
-            <div class="notes">
             </div>
         </div>
         <div id="architecture-16" class="step invisible" data-x="3690" data-y="100">
@@ -1027,6 +1086,12 @@
             </div>
 
             <div class="notes">
+                <p>
+                    So now we have models that are in sync but as the application continues to grow
+                    it may get out of hand so the final piece for this puzzle is to create some kind
+                    of way to automate the ui changes as well and for that we use knockout.
+
+                </p>
             </div>
         </div>
 
@@ -1035,6 +1100,13 @@
         <div id="knockout-1" class="step invisible" data-x="2000" data-y="1000">
             <div class="center">
                 <h1>Knockout.js</h1>
+            </div>
+            <div class="notes">
+                <p>
+                    I talked about knockout earlier but I don't think it is a good solution for
+                    models but for managing the UI it's great. It's a MVVM framework and it do two
+                    things that we use.
+                </p>
             </div>
         </div>
         <div id="knockout-2" class="step invisible" data-x="2000" data-y="1000">
@@ -1049,6 +1121,12 @@
                 <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
                 <div class="box ballon ballon-up ballon2">Automatic UI Refresh</div>
             </div>
+            <div class="notes">
+                <p>
+                    Read more about it...
+                </p>
+            </div>
+
         </div>
         <div id="knockout-4" class="step invisible" data-x="2000" data-y="1000">
             <div class="center">
@@ -1063,6 +1141,12 @@
         <div id="knockout-5" class="step" data-x="2000" data-y="2000">
             <h1 class="small">Knockout HTML</h1>
             <pre><code data-language="html" data-src="src/knockout-1.js"></code></pre>
+            <div class="notes">
+                <p>
+                    So now we have backbone and knockout, how do they integrate?
+                </p>
+            </div>
+
         </div>
         <div id="knockout-6" class="step" data-x="2000" data-y="3000">
             <h1 class="small">Backbone & Knockout</h1>
