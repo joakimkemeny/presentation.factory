@@ -38,7 +38,7 @@ define([
                 queue : function (model) {
                     webSocket.send("order:queue", { id : model.id() });
                 },
-                delete : function (model) {
+                remove : function (model) {
                     webSocket.send("order:delete", { id : model.id() });
                 }
             }, this.el);

@@ -13,8 +13,6 @@ define([
         render : function () {
             this.$el.html(scaleListTemplate);
 
-            var collection = this.collection;
-
             Knockout.applyBindings({
 
                 // Create the view model for the collection.

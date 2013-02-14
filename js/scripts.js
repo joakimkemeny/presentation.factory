@@ -29,7 +29,7 @@ WebSockets = (function ($) {
         }
 
         var browser = step.find(".browser");
-        var src = browser.data("src")
+        var src = browser.data("src");
         browser.append("<iframe src='" + src + "' frameborder='0'></iframe>");
 
         step.data("demo-loaded", true);
@@ -41,7 +41,7 @@ WebSockets = (function ($) {
         }
 
         $("code[data-src]", step).each(function (index, element) {
-            var $element = $(element)
+            var $element = $(element);
             var srcUrl = $element.data("src");
             var srcLang = $element.data("language");
             $.get(srcUrl, function (data) {
@@ -80,6 +80,7 @@ WebSockets = (function ($) {
 }($));
 
 $(function () {
+    "use strict";
     $(".step").on("impress:stepenter", function () {
         WebSockets.loadSrc($(this));
         WebSockets.loadDemo($(this));
