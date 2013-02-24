@@ -21,7 +21,7 @@
 
 // You are one of those who like to know how thing work inside?
 // Let me show you the cogs that make impress.js run...
-(function (document, window) {
+(function ( document, window ) {
     'use strict';
 
     // HELPER FUNCTIONS
@@ -35,15 +35,15 @@
             prefixes = 'Webkit Moz O ms Khtml'.split(' '),
             memory = {};
 
-        return function (prop) {
-            if (typeof memory[ prop ] === "undefined") {
+        return function ( prop ) {
+            if ( typeof memory[ prop ] === "undefined" ) {
 
-                var ucProp = prop.charAt(0).toUpperCase() + prop.substr(1),
-                    props = (prop + ' ' + prefixes.join(ucProp + ' ') + ucProp).split(' ');
+                var ucProp  = prop.charAt(0).toUpperCase() + prop.substr(1),
+                    props   = (prop + ' ' + prefixes.join(ucProp + ' ') + ucProp).split(' ');
 
                 memory[ prop ] = null;
-                for (var i in props) {
-                    if (style[ props[i] ] !== undefined) {
+                for ( var i in props ) {
+                    if ( style[ props[i] ] !== undefined ) {
                         memory[ prop ] = props[i];
                         break;
                     }
@@ -58,19 +58,19 @@
 
     // `arraify` takes an array-like object and turns it into real Array
     // to make all the Array.prototype goodness available.
-    var arrayify = function (a) {
-        return [].slice.call(a);
+    var arrayify = function ( a ) {
+        return [].slice.call( a );
     };
 
     // `css` function applies the styles given in `props` object to the element
     // given as `el`. It runs all property names through `pfx` function to make
     // sure proper prefixed version of the property is used.
-    var css = function (el, props) {
+    var css = function ( el, props ) {
         var key, pkey;
-        for (key in props) {
-            if (props.hasOwnProperty(key)) {
+        for ( key in props ) {
+            if ( props.hasOwnProperty(key) ) {
                 pkey = pfx(key);
-                if (pkey !== null) {
+                if ( pkey !== null ) {
                     el.style[pkey] = props[key];
                 }
             }
@@ -86,22 +86,22 @@
     };
 
     // `byId` returns element with given `id` - you probably have guessed that ;)
-    var byId = function (id) {
+    var byId = function ( id ) {
         return document.getElementById(id);
     };
 
     // `$` returns first element for given CSS `selector` in the `context` of
     // the given element or whole document.
-    var $ = function (selector, context) {
+    var $ = function ( selector, context ) {
         context = context || document;
         return context.querySelector(selector);
     };
 
     // `$$` return an array of elements for given CSS `selector` in the `context` of
     // the given element or whole document.
-    var $$ = function (selector, context) {
+    var $$ = function ( selector, context ) {
         context = context || document;
-        return arrayify(context.querySelectorAll(selector));
+        return arrayify( context.querySelectorAll(selector) );
     };
 
     // `triggerEvent` builds a custom DOM event with given `eventName` and `detail` data
@@ -113,28 +113,28 @@
     };
 
     // `translate` builds a translate transform string for given data.
-    var translate = function (t) {
+    var translate = function ( t ) {
         return " translate3d(" + t.x + "px," + t.y + "px," + t.z + "px) ";
     };
 
     // `rotate` builds a rotate transform string for given data.
     // By default the rotations are in X Y Z order that can be reverted by passing `true`
     // as second parameter.
-    var rotate = function (r, revert) {
+    var rotate = function ( r, revert ) {
         var rX = " rotateX(" + r.x + "deg) ",
             rY = " rotateY(" + r.y + "deg) ",
             rZ = " rotateZ(" + r.z + "deg) ";
 
-        return revert ? rZ + rY + rX : rX + rY + rZ;
+        return revert ? rZ+rY+rX : rX+rY+rZ;
     };
 
     // `scale` builds a scale transform string for given data.
-    var scale = function (s) {
+    var scale = function ( s ) {
         return " scale(" + s + ") ";
     };
 
     // `perspective` builds a perspective transform string for given data.
-    var perspective = function (p) {
+    var perspective = function ( p ) {
         return " perspective(" + p + "px) ";
     };
 
@@ -143,12 +143,12 @@
     var getElementFromHash = function () {
         // get id from url # by removing `#` or `#/` from the beginning,
         // so both "fallback" `#slide-id` and "enhanced" `#/slide-id` will work
-        return byId(window.location.hash.replace(/^#\/?/, ""));
+        return byId( window.location.hash.replace(/^#\/?/,"") );
     };
 
     // `computeWindowScale` counts the scale factor between window size and size
     // defined for the presentation in the config.
-    var computeWindowScale = function (config) {
+    var computeWindowScale = function ( config ) {
         var hScale = window.innerHeight / config.height,
             wScale = window.innerWidth / config.width,
             scale = hScale > wScale ? wScale : hScale;
@@ -198,20 +198,18 @@
 
     // some default config values.
     var defaults = {
-        width : 1024,
-        height : 768,
-        maxScale : 1,
-        minScale : 0,
+        width: 1024,
+        height: 768,
+        maxScale: 1,
+        minScale: 0,
 
-        perspective : 1000,
+        perspective: 1000,
 
-        transitionDuration : 1000
+        transitionDuration: 1000
     };
 
     // it's just an empty function ... and a useless comment.
-    var empty = function () {
-        return false;
-    };
+    var empty = function () { return false; };
 
     // IMPRESS.JS API
 
@@ -219,17 +217,17 @@
     // It's the core `impress` function that returns the impress.js API
     // for a presentation based on the element with given id ('impress'
     // by default).
-    var impress = window.impress = function (rootId) {
+    var impress = window.impress = function ( rootId ) {
 
         // If impress.js is not supported by the browser return a dummy API
         // it may not be a perfect solution but we return early and avoid
         // running code that may use features not implemented in the browser.
         if (!impressSupported) {
             return {
-                init : empty,
-                goto : empty,
-                prev : empty,
-                next : empty
+                init: empty,
+                goto: empty,
+                prev: empty,
+                next: empty
             };
         }
 
@@ -259,7 +257,7 @@
         var windowScale = null;
 
         // root presentation elements
-        var root = byId(rootId);
+        var root = byId( rootId );
         var canvas = document.createElement("div");
 
         var initialized = false;
@@ -297,44 +295,42 @@
 
         // `initStep` initializes given step element by reading data from its
         // data attributes and setting correct styles.
-        var initStep = function (el, idx) {
+        var initStep = function ( el, idx ) {
             var data = el.dataset,
                 step = {
-                    translate : {
-                        x : toNumber(data.x),
-                        y : toNumber(data.y),
-                        z : toNumber(data.z)
+                    translate: {
+                        x: toNumber(data.x),
+                        y: toNumber(data.y),
+                        z: toNumber(data.z)
                     },
-                    rotate : {
-                        x : toNumber(data.rotateX),
-                        y : toNumber(data.rotateY),
-                        z : toNumber(data.rotateZ || data.rotate)
+                    rotate: {
+                        x: toNumber(data.rotateX),
+                        y: toNumber(data.rotateY),
+                        z: toNumber(data.rotateZ || data.rotate)
                     },
-                    scale : toNumber(data.scale, 1),
-                    el : el
+                    scale: toNumber(data.scale, 1),
+                    el: el
                 };
 
-            if (!el.id) {
+            if ( !el.id ) {
                 el.id = "step-" + (idx + 1);
             }
 
             stepsData["impress-" + el.id] = step;
 
             css(el, {
-                position : "absolute",
-                transform : "translate(-50%,-50%)" +
+                position: "absolute",
+                transform: "translate(-50%,-50%)" +
                     translate(step.translate) +
                     rotate(step.rotate) +
                     scale(step.scale),
-                transformStyle : "preserve-3d"
+                transformStyle: "preserve-3d"
             });
         };
 
         // `init` API function that initializes (and runs) the presentation.
         var init = function () {
-            if (initialized) {
-                return;
-            }
+            if (initialized) { return; }
 
             // First we set up the viewport for mobile devices.
             // For some reason iPad goes nuts when it is not done properly.
@@ -348,19 +344,19 @@
             // initialize configuration object
             var rootData = root.dataset;
             config = {
-                width : toNumber(rootData.width, defaults.width),
-                height : toNumber(rootData.height, defaults.height),
-                maxScale : toNumber(rootData.maxScale, defaults.maxScale),
-                minScale : toNumber(rootData.minScale, defaults.minScale),
-                perspective : toNumber(rootData.perspective, defaults.perspective),
-                transitionDuration : toNumber(rootData.transitionDuration, defaults.transitionDuration)
+                width: toNumber( rootData.width, defaults.width ),
+                height: toNumber( rootData.height, defaults.height ),
+                maxScale: toNumber( rootData.maxScale, defaults.maxScale ),
+                minScale: toNumber( rootData.minScale, defaults.minScale ),
+                perspective: toNumber( rootData.perspective, defaults.perspective ),
+                transitionDuration: toNumber( rootData.transitionDuration, defaults.transitionDuration )
             };
 
-            windowScale = computeWindowScale(config);
+            windowScale = computeWindowScale( config );
 
             // wrap steps with "canvas" element
-            arrayify(root.childNodes).forEach(function (el) {
-                canvas.appendChild(el);
+            arrayify( root.childNodes ).forEach(function ( el ) {
+                canvas.appendChild( el );
             });
             root.appendChild(canvas);
 
@@ -368,22 +364,22 @@
             document.documentElement.style.height = "100%";
 
             css(body, {
-                height : "100%",
-                overflow : "hidden"
+                height: "100%",
+                overflow: "hidden"
             });
 
             var rootStyles = {
-                position : "absolute",
-                transformOrigin : "top left",
-                transition : "all 0s ease-in-out",
-                transformStyle : "preserve-3d"
+                position: "absolute",
+                transformOrigin: "top left",
+                transition: "all 0s ease-in-out",
+                transformStyle: "preserve-3d"
             };
 
             css(root, rootStyles);
             css(root, {
-                top : "50%",
-                left : "50%",
-                transform : perspective(config.perspective / windowScale) + scale(windowScale)
+                top: "50%",
+                left: "50%",
+                transform: perspective( config.perspective/windowScale ) + scale( windowScale )
             });
             css(canvas, rootStyles);
 
@@ -392,25 +388,25 @@
 
             // get and init steps
             steps = $$(".step", root);
-            steps.forEach(initStep);
+            steps.forEach( initStep );
 
             // set a default initial state of the canvas
             currentState = {
-                translate : { x : 0, y : 0, z : 0 },
-                rotate : { x : 0, y : 0, z : 0 },
-                scale : 1
+                translate: { x: 0, y: 0, z: 0 },
+                rotate:    { x: 0, y: 0, z: 0 },
+                scale:     1
             };
 
             initialized = true;
 
-            triggerEvent(root, "impress:init", { api : roots[ "impress-root-" + rootId ] });
+            triggerEvent(root, "impress:init", { api: roots[ "impress-root-" + rootId ] });
         };
 
         // `getStep` is a helper function that returns a step element defined by parameter.
         // If a number is given, step with index given by the number is returned, if a string
         // is given step element with such id is returned, if DOM element is given it is returned
         // if it is a correct step element.
-        var getStep = function (step) {
+        var getStep = function ( step ) {
             if (typeof step === "number") {
                 step = step < 0 ? steps[ steps.length + step] : steps[ step ];
             } else if (typeof step === "string") {
@@ -424,9 +420,9 @@
 
         // `goto` API function that moves to step given with `el` parameter (by index, id or element),
         // with a transition `duration` optionally given as second parameter.
-        var goto = function (el, duration) {
+        var goto = function ( el, duration ) {
 
-            if (!initialized || !(el = getStep(el))) {
+            if ( !initialized || !(el = getStep(el)) ) {
                 // presentation not initialized or given element is not a step
                 return false;
             }
@@ -443,7 +439,7 @@
 
             var step = stepsData["impress-" + el.id];
 
-            if (activeStep) {
+            if ( activeStep ) {
                 activeStep.classList.remove("active");
                 body.classList.remove("impress-on-" + activeStep.id);
             }
@@ -453,17 +449,17 @@
 
             // compute target state of the canvas based on given step
             var target = {
-                rotate : {
-                    x : -step.rotate.x,
-                    y : -step.rotate.y,
-                    z : -step.rotate.z
+                rotate: {
+                    x: -step.rotate.x,
+                    y: -step.rotate.y,
+                    z: -step.rotate.z
                 },
-                translate : {
-                    x : -step.translate.x,
-                    y : -step.translate.y,
-                    z : -step.translate.z
+                translate: {
+                    x: -step.translate.x,
+                    y: -step.translate.y,
+                    z: -step.translate.z
                 },
-                scale : 1 / step.scale
+                scale: 1 / step.scale
             };
 
             // Check if the transition is zooming in or not.
@@ -501,15 +497,15 @@
             css(root, {
                 // to keep the perspective look similar for different scales
                 // we need to 'scale' the perspective, too
-                transform : perspective(config.perspective / targetScale) + scale(targetScale),
-                transitionDuration : duration + "ms",
-                transitionDelay : (zoomin ? delay : 0) + "ms"
+                transform: perspective( config.perspective / targetScale ) + scale( targetScale ),
+                transitionDuration: duration + "ms",
+                transitionDelay: (zoomin ? delay : 0) + "ms"
             });
 
             css(canvas, {
-                transform : rotate(target.rotate, true) + translate(target.translate),
-                transitionDuration : duration + "ms",
-                transitionDelay : (zoomin ? 0 : delay) + "ms"
+                transform: rotate(target.rotate, true) + translate(target.translate),
+                transitionDuration: duration + "ms",
+                transitionDelay: (zoomin ? 0 : delay) + "ms"
             });
 
             // Here is a tricky part...
@@ -521,10 +517,10 @@
             //
             // I know that this `if` statement looks scary, but it's pretty simple when you know what is going on
             // - it's simply comparing all the values.
-            if (currentState.scale === target.scale ||
+            if ( currentState.scale === target.scale ||
                 (currentState.rotate.x === target.rotate.x && currentState.rotate.y === target.rotate.y &&
                     currentState.rotate.z === target.rotate.z && currentState.translate.x === target.translate.x &&
-                    currentState.translate.y === target.translate.y && currentState.translate.z === target.translate.z)) {
+                    currentState.translate.y === target.translate.y && currentState.translate.z === target.translate.z) ) {
                 delay = 0;
             }
 
@@ -545,7 +541,7 @@
             // If you want learn something interesting and see how it was done with `transitionend` go back to
             // version 0.5.2 of impress.js: http://github.com/bartaz/impress.js/blob/0.5.2/js/impress.js
             window.clearTimeout(stepEnterTimeout);
-            stepEnterTimeout = window.setTimeout(function () {
+            stepEnterTimeout = window.setTimeout(function() {
                 onStepEnter(activeStep);
             }, duration + delay);
 
@@ -554,15 +550,15 @@
 
         // `prev` API function goes to previous step (in document order)
         var prev = function () {
-            var prev = steps.indexOf(activeStep) - 1;
-            prev = prev >= 0 ? steps[ prev ] : steps[ steps.length - 1 ];
+            var prev = steps.indexOf( activeStep ) - 1;
+            prev = prev >= 0 ? steps[ prev ] : steps[ steps.length-1 ];
 
             return goto(prev);
         };
 
         // `next` API function goes to next step (in document order)
         var next = function () {
-            var next = steps.indexOf(activeStep) + 1;
+            var next = steps.indexOf( activeStep ) + 1;
             next = next < steps.length ? steps[ next ] : steps[ 0 ];
 
             return goto(next);
@@ -581,7 +577,7 @@
         // There classes can be used in CSS to style different types of steps.
         // For example the `present` class can be used to trigger some custom
         // animations when step is shown.
-        root.addEventListener("impress:init", function () {
+        root.addEventListener("impress:init", function(){
             // STEP CLASSES
             steps.forEach(function (step) {
                 step.classList.add("future");
@@ -601,7 +597,7 @@
         }, false);
 
         // Adding hash change support.
-        root.addEventListener("impress:init", function () {
+        root.addEventListener("impress:init", function(){
 
             // last hash detected
             var lastHash = "";
@@ -623,7 +619,7 @@
                 //
                 // To avoid this we store last entered hash and compare.
                 if (window.location.hash !== lastHash) {
-                    goto(getElementFromHash());
+                    goto( getElementFromHash() );
                 }
             }, false);
 
@@ -636,10 +632,10 @@
 
         // store and return API for given impress.js root element
         return (roots[ "impress-root-" + rootId ] = {
-            init : init,
-            goto : goto,
-            next : next,
-            prev : prev
+            init: init,
+            goto: goto,
+            next: next,
+            prev: prev
         });
 
     };
@@ -657,7 +653,7 @@
 //
 // In future I think about moving it to make them optional, move to separate files
 // and treat more like a 'plugins'.
-(function (document, window) {
+(function ( document, window ) {
     'use strict';
 
     // throttling function calls, by Remy Sharp
@@ -684,8 +680,8 @@
         // KEYBOARD NAVIGATION HANDLERS
 
         // Prevent default keydown action when one of supported key is pressed.
-        document.addEventListener("keydown", function (event) {
-            if (event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40)) {
+        document.addEventListener("keydown", function ( event ) {
+            if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
                 event.preventDefault();
             }
         }, false);
@@ -705,9 +701,9 @@
         //   positioning. I didn't want to just prevent this default action, so I used [tab]
         //   as another way to moving to next step... And yes, I know that for the sake of
         //   consistency I should add [shift+tab] as opposite action...
-        document.addEventListener("keyup", function (event) {
-            if (event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40)) {
-                switch (event.keyCode) {
+        document.addEventListener("keyup", function ( event ) {
+            if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
+                switch( event.keyCode ) {
                     case 33: // pg up
                     case 37: // left
                     case 38: // up
@@ -727,55 +723,55 @@
         }, false);
 
         // delegated handler for clicking on the links to presentation steps
-        document.addEventListener("click", function (event) {
+        document.addEventListener("click", function ( event ) {
             // event delegation with "bubbling"
             // check if event target (or any of its parents is a link)
             var target = event.target;
-            while ((target.tagName !== "A") &&
-                (target !== document.documentElement)) {
+            while ( (target.tagName !== "A") &&
+                (target !== document.documentElement) ) {
                 target = target.parentNode;
             }
 
-            if (target.tagName === "A") {
+            if ( target.tagName === "A" ) {
                 var href = target.getAttribute("href");
 
                 // if it's a link to presentation step, target this step
-                if (href && href[0] === '#') {
-                    target = document.getElementById(href.slice(1));
+                if ( href && href[0] === '#' ) {
+                    target = document.getElementById( href.slice(1) );
                 }
             }
 
-            if (api.goto(target)) {
+            if ( api.goto(target) ) {
                 event.stopImmediatePropagation();
                 event.preventDefault();
             }
         }, false);
 
         // delegated handler for clicking on step elements
-        document.addEventListener("click", function (event) {
+        document.addEventListener("click", function ( event ) {
             var target = event.target;
             // find closest step element that is not active
-            while (!(target.classList.contains("step") && !target.classList.contains("active")) &&
-                (target !== document.documentElement)) {
+            while ( !(target.classList.contains("step") && !target.classList.contains("active")) &&
+                (target !== document.documentElement) ) {
                 target = target.parentNode;
             }
 
-            if (api.goto(target)) {
+            if ( api.goto(target) ) {
                 event.preventDefault();
             }
         }, false);
 
         // touch handler to detect taps on the left and right side of the screen
         // based on awesome work of @hakimel: https://github.com/hakimel/reveal.js
-        document.addEventListener("touchstart", function (event) {
+        document.addEventListener("touchstart", function ( event ) {
             if (event.touches.length === 1) {
                 var x = event.touches[0].clientX,
                     width = window.innerWidth * 0.3,
                     result = null;
 
-                if (x < width) {
+                if ( x < width ) {
                     result = api.prev();
-                } else if (x > window.innerWidth - width) {
+                } else if ( x > window.innerWidth - width ) {
                     result = api.next();
                 }
 
@@ -788,7 +784,7 @@
         // rescale presentation when window is resized
         window.addEventListener("resize", throttle(function () {
             // force going to active step again, to trigger rescaling
-            api.goto(document.querySelector(".active"), 500);
+            api.goto( document.querySelector(".active"), 500 );
         }, 250), false);
 
     }, false);
