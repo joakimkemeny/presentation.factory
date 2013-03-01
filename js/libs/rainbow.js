@@ -32,21 +32,21 @@ window['Rainbow'] = (function() {
          *
          * @type {Object}
          */
-            replacement_positions = {},
+        replacement_positions = {},
 
         /**
          * an array of the language patterns specified for each language
          *
          * @type {Object}
          */
-            language_patterns = {},
+        language_patterns = {},
 
         /**
          * an array of languages and whether they should bypass the default patterns
          *
          * @type {Object}
          */
-            bypass_defaults = {},
+        bypass_defaults = {},
 
         /**
          * processing level
@@ -56,14 +56,14 @@ window['Rainbow'] = (function() {
          *
          * @type {number}
          */
-            CURRENT_LEVEL = 0,
+        CURRENT_LEVEL = 0,
 
         /**
          * constant used to refer to the default language
          *
          * @type {number}
          */
-            DEFAULT_LANGUAGE = 0,
+        DEFAULT_LANGUAGE = 0,
 
         /**
          * used as counters so we can selectively call setTimeout
@@ -71,22 +71,22 @@ window['Rainbow'] = (function() {
          *
          * @type {number}
          */
-            match_counter = 0,
+        match_counter = 0,
 
         /**
          * @type {number}
          */
-            replacement_counter = 0,
+        replacement_counter = 0,
 
         /**
          * @type {null|string}
          */
-            global_class,
+        global_class,
 
         /**
          * @type {null|Function}
          */
-            onHighlight;
+        onHighlight;
 
     /**
      * cross browser get attribute for an element
@@ -306,7 +306,7 @@ window['Rainbow'] = (function() {
             /**
              * callback to process the next match of this pattern
              */
-                processNext = function() {
+            processNext = function() {
                 var nextCall = function() {
                     _processPattern(regex, pattern, code, callback);
                 };
@@ -355,13 +355,13 @@ window['Rainbow'] = (function() {
                 processNext();
             },
 
-        // if this pattern has sub matches for different groups in the regex
-        // then we should process them one at a time by rerunning them through
-        // this function to generate the new replacement
-        //
-        // we run through them backwards because the match position of earlier
-        // matches will not change depending on what gets replaced in later
-        // matches
+            // if this pattern has sub matches for different groups in the regex
+            // then we should process them one at a time by rerunning them through
+            // this function to generate the new replacement
+            //
+            // we run through them backwards because the match position of earlier
+            // matches will not change depending on what gets replaced in later
+            // matches
             group_keys = keys(pattern['matches']),
 
             /**
@@ -371,7 +371,7 @@ window['Rainbow'] = (function() {
              * @param {Array} group_keys
              * @param {Function} callback
              */
-                processGroup = function(i, group_keys, callback) {
+            processGroup = function(i, group_keys, callback) {
                 if (i >= group_keys.length) {
                     return callback(replacement);
                 }
@@ -412,7 +412,7 @@ window['Rainbow'] = (function() {
                      * we treat the 'matches' part as the pattern and keep
                      * the name around to wrap it with later
                      */
-                        process_group = group['name'] && group['matches'] ? group['matches'] : group,
+                    process_group = group['name'] && group['matches'] ? group['matches'] : group,
 
                     /**
                      * takes the code block matched at this group, replaces it
@@ -423,7 +423,7 @@ window['Rainbow'] = (function() {
                      * @param {string} replace_block
                      * @param {string|null} match_name
                      */
-                        _replaceAndContinue = function(block, replace_block, match_name) {
+                    _replaceAndContinue = function(block, replace_block, match_name) {
                         replacement = _replaceAtPosition(_indexOfGroup(match, group_keys[i]), block, match_name ? _wrapCodeInSpan(match_name, replace_block) : replace_block, replacement);
                         processNextGroup();
                     };
@@ -489,7 +489,7 @@ window['Rainbow'] = (function() {
         return code.substr(0, position) + sub_string.replace(replace, replace_with);
     }
 
-    /**
+   /**
      * sorts an object by index descending
      *
      * @param {Object} object

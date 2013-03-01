@@ -17,7 +17,7 @@
  */
 
 /*jshint bitwise:true, curly:true, eqeqeq:true, forin:true, latedef:true, newcap:true,
- noarg:true, noempty:true, undef:true, strict:true, browser:true */
+         noarg:true, noempty:true, undef:true, strict:true, browser:true */
 
 // You are one of those who like to know how thing work inside?
 // Let me show you the cogs that make impress.js run...
@@ -169,17 +169,17 @@
 
     var ua = navigator.userAgent.toLowerCase();
     var impressSupported =
-        // browser should support CSS 3D transtorms
-        ( pfx("perspective") !== null ) &&
+                          // browser should support CSS 3D transtorms
+                           ( pfx("perspective") !== null ) &&
 
-            // and `classList` and `dataset` APIs
-            ( body.classList ) &&
-            ( body.dataset ) &&
+                          // and `classList` and `dataset` APIs
+                           ( body.classList ) &&
+                           ( body.dataset ) &&
 
-            // but some mobile devices need to be blacklisted,
-            // because their CSS 3D support or hardware is not
-            // good enough to run impress.js properly, sorry...
-            ( ua.search(/(iphone)|(ipod)|(android)/) === -1 );
+                          // but some mobile devices need to be blacklisted,
+                          // because their CSS 3D support or hardware is not
+                          // good enough to run impress.js properly, sorry...
+                           ( ua.search(/(iphone)|(ipod)|(android)/) === -1 );
 
     if (!impressSupported) {
         // we can't be sure that `classList` is supported
@@ -321,9 +321,9 @@
             css(el, {
                 position: "absolute",
                 transform: "translate(-50%,-50%)" +
-                    translate(step.translate) +
-                    rotate(step.rotate) +
-                    scale(step.scale),
+                           translate(step.translate) +
+                           rotate(step.rotate) +
+                           scale(step.scale),
                 transformStyle: "preserve-3d"
             });
         };
@@ -519,8 +519,8 @@
             // - it's simply comparing all the values.
             if ( currentState.scale === target.scale ||
                 (currentState.rotate.x === target.rotate.x && currentState.rotate.y === target.rotate.y &&
-                    currentState.rotate.z === target.rotate.z && currentState.translate.x === target.translate.x &&
-                    currentState.translate.y === target.translate.y && currentState.translate.z === target.translate.z) ) {
+                 currentState.rotate.z === target.rotate.z && currentState.translate.x === target.translate.x &&
+                 currentState.translate.y === target.translate.y && currentState.translate.z === target.translate.z) ) {
                 delay = 0;
             }
 
@@ -707,15 +707,15 @@
                     case 33: // pg up
                     case 37: // left
                     case 38: // up
-                        api.prev();
-                        break;
+                             api.prev();
+                             break;
                     case 9:  // tab
                     case 32: // space
                     case 34: // pg down
                     case 39: // right
                     case 40: // down
-                        api.next();
-                        break;
+                             api.next();
+                             break;
                 }
 
                 event.preventDefault();
@@ -728,7 +728,7 @@
             // check if event target (or any of its parents is a link)
             var target = event.target;
             while ( (target.tagName !== "A") &&
-                (target !== document.documentElement) ) {
+                    (target !== document.documentElement) ) {
                 target = target.parentNode;
             }
 
@@ -752,7 +752,7 @@
             var target = event.target;
             // find closest step element that is not active
             while ( !(target.classList.contains("step") && !target.classList.contains("active")) &&
-                (target !== document.documentElement) ) {
+                    (target !== document.documentElement) ) {
                 target = target.parentNode;
             }
 
