@@ -28,7 +28,7 @@ function ParticleEmitter() {
         this.m_x = CANVAS_WIDTH * xScale;
         this.m_y = CANVAS_HEIGHT * yScale;
         this.m_image = image;
-        this.m_dieRate = 0.95;
+        this.m_dieRate = 1.0;
         // start with smoke already in place
         for (var n = 0; n < particles; n++) {
             this.m_listParticle.push(new Particle());
