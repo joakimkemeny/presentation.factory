@@ -21,8 +21,8 @@
         '</head><body>' +
         '<div id="console">' +
         '<div id="views">' +
-        '<iframe id="slideView" scrolling="no"></iframe>' +
-        '<iframe id="preView" scrolling="no"></iframe>' +
+        //'<iframe id="slideView" scrolling="no"></iframe>' +
+        //'<iframe id="preView" scrolling="no"></iframe>' +
         '<div id="blocker"></div>' +
         '</div>' +
         '<div id="notes"></div>' +
@@ -86,7 +86,7 @@
                 var baseURL = document.URL.substring(0, document.URL.search('#/'));
                 var slideSrc = baseURL + '#' + document.querySelector('.active').id;
                 var preSrc = baseURL + '#' + nextStep().id;
-                var slideView = consoleWindow.document.getElementById('slideView');
+                /*var slideView = consoleWindow.document.getElementById('slideView');
                 // Setting them when they are already set causes glithes in firexof, so we check first:
                 if (slideView.src !== slideSrc) {
                     slideView.src = slideSrc;
@@ -94,7 +94,7 @@
                 var preView = consoleWindow.document.getElementById('preView');
                 if (preView.src !== preSrc) {
                     preView.src = preSrc;
-                }
+                }*/
 
                 consoleWindow.document.getElementById('status').innerHTML = '<span style="color: red">Moving</span>';
             }
@@ -118,7 +118,7 @@
 
                 // Set the views
                 var baseURL = document.URL.substring(0, document.URL.search('#/'));
-                var slideSrc = baseURL + '#' + document.querySelector('.active').id;
+                /*var slideSrc = baseURL + '#' + document.querySelector('.active').id;
                 var preSrc = baseURL + '#' + nextStep().id;
                 var slideView = consoleWindow.document.getElementById('slideView');
                 // Setting them when they are already set causes glithes in firexof, so we check first:
@@ -128,7 +128,7 @@
                 var preView = consoleWindow.document.getElementById('preView');
                 if (preView.src !== preSrc) {
                     preView.src = preSrc;
-                }
+                }*/
 
                 consoleWindow.document.getElementById('status').innerHTML = '<span style="color: green">Ready</span>';
             }
