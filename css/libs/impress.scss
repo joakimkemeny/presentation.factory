@@ -3,66 +3,66 @@
 /*** Enable clicking on elements 'hiding' behind body in 3D ***************************************/
 
 body {
-	pointer-events: none;
+    pointer-events: none;
 }
 
 #impress {
-	pointer-events: auto;
+    pointer-events: auto;
 }
 
 /*** Step *****************************************************************************************/
 
 .step {
-	@include transition-opacity(1s);
+    @include transition-opacity(1s);
 
-	height: 744px;
-	padding: 40px;
-	position: relative;
-	width: 1000px;
+    height: 744px;
+    padding: 40px;
+    position: relative;
+    width: 1000px;
 
-	&:not(.active) {
-		opacity: 0.3;
-		&.invisible {
-			opacity: 0.0;
-		}
-		&.opaque {
-			opacity: 1.0;
-		}
-	}
+    &:not(.active) {
+        opacity: 0.3;
+        &.invisible {
+            opacity: 0.0;
+        }
+        &.opaque {
+            opacity: 1.0;
+        }
+    }
 }
 
 .notes {
-	display: none;
+    display: none;
 }
 
 /*** Overview step ********************************************************************************/
 
 #overview {
-	padding: 0;
-	z-index: -1;
+    padding: 0;
+    z-index: -1;
 }
 
 .impress-on-overview {
-	.step,
-	.step:not(.active) {
-		cursor: pointer;
-		opacity: 1;
-	}
+    .step,
+    .step:not(.active) {
+        cursor: pointer;
+        opacity: 1;
+    }
 }
 
 /*** Show navigation hints ************************************************************************/
 
 .hint {
-	div {
-		@include border-radius(20px);
+    div {
+        @include border-radius(20px);
 
-		background: rgba(0, 0, 0, 0.5);
-		color: #eee;
-		margin: 20px auto 0;
-		padding: 20px 40px;
-		width: 600px;
-	}
+        background: rgba(0, 0, 0, 0.5);
+        color: #eee;
+        margin: 20px auto 0;
+        padding: 20px 40px;
+        width: 600px;
+    }
 
-	p {
-	}
+    p {
+    }
 }
