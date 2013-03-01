@@ -22,89 +22,99 @@
 // @codekit-prepend "libs/language/smalltalk.js"
 // @codekit-prepend "libs/smoke.js"
 
-var $ = $ || {};
-var WebSockets = WebSockets || {};
-
-WebSockets = (function ($) {
+(function () {
     "use strict";
-    var Presentation = {};
 
-    Presentation.loadDemo = function (step) {
-        if (step.data("demo-loaded")) {
-            return;
-        }
+    var Factory = {
 
-        var browser = step.find(".browser");
-        var src = browser.data("src");
-        browser.append("<iframe src='" + src + "' frameborder='0'></iframe>");
-
-        step.data("demo-loaded", true);
-    };
-
-    Presentation.loadSrc = function (step) {
-        if (step.data("src-loaded")) {
-            return;
-        }
-
-        $("code[data-src]", step).each(function (index, element) {
-            var $element = $(element);
-            var srcUrl = $element.data("src");
-            var srcLang = $element.data("language");
-            $.get(srcUrl, function (data) {
-                if (srcLang === "text" || srcLang === "") {
-                    $element.append(data);
-                } else {
-                    Rainbow.color(data, srcLang, function (highlighted) {
-                        $element.append(highlighted);
-                    });
+        /**
+         * Attaches key handlers to enter full screen.
+         */
+        enterFullScreen : function () {
+            $(document).keypress(function (e) {
+                if (e.keyCode === 102) {
+                    document.getElementsByTagName("html")[0].webkitRequestFullScreen();
                 }
-            }, "text");
-        });
+            });
+        },
 
-        step.data("src-loaded", true);
-    };
-
-    Presentation.startSmoke = function (step) {
-        initSmoke(step + "-smoke");
-    };
-
-    Presentation.stopSmoke = function () {
-        setTimeout(function () {
-            destroySmoke();
-        }, 5000);
-    };
-
-    Presentation.addKeybindings = function () {
-        $(document).keypress(function (e) {
-            if (e.keyCode === 102) {
-                document.getElementsByTagName("html")[0].webkitRequestFullScreen();
+        /**
+         * Loads the demo for the current step into an iframe.
+         */
+        loadDemo : function (step) {
+            if (step.data("demo-loaded")) {
+                return;
             }
-        });
+
+            var browser = step.find(".browser");
+            var src = browser.data("src");
+            browser.append("<iframe src='" + src + "' frameborder='0'></iframe>");
+
+            step.data("demo-loaded", true);
+        },
+
+        /**
+         * Loads the source code for the current step.
+         */
+        loadSrc : function (step) {
+            if (step.data("src-loaded")) {
+                return;
+            }
+
+            $("code[data-src]", step).each(function (index, element) {
+                var $element = $(element);
+                var srcUrl = $element.data("src");
+                var srcLang = $element.data("language");
+                $.get(srcUrl, function (data) {
+                    if (srcLang === "text" || srcLang === "") {
+                        $element.append(data);
+                    } else {
+                        Rainbow.color(data, srcLang, function (highlighted) {
+                            $element.append(highlighted);
+                        });
+                    }
+                }, "text");
+            });
+
+            step.data("src-loaded", true);
+        },
+
+        /**
+         * Starts the smoke effect.
+         */
+        startSmoke : function (step) {
+            initSmoke(step + "-smoke");
+        },
+
+        /**
+         * Stops the smoke effect.
+         */
+        stopSmoke : function () {
+            setTimeout(function () {
+                destroySmoke();
+            }, 5000);
+        }
     };
 
-    return Presentation;
-}($));
+    $(function () {
+        $(".step").on("impress:stepenter", function () {
+            Factory.loadSrc($(this));
+            Factory.loadDemo($(this));
+        });
 
-$(function () {
-    "use strict";
-    $(".step").on("impress:stepenter", function () {
-        WebSockets.loadSrc($(this));
-        WebSockets.loadDemo($(this));
-    });
-    $("#intro-1").on("impress:stepenter", function () {
-        WebSockets.startSmoke("intro");
-    });
-    $("#intro-1").on("impress:stepleave", function () {
-        WebSockets.stopSmoke("intro");
-    });
-    $("#outro-1").on("impress:stepenter", function () {
-        WebSockets.startSmoke("outro");
-    });
-    $("#outro-1").on("impress:stepleave", function () {
-        WebSockets.stopSmoke("outro");
-    });
+        $("#intro-1").on("impress:stepenter", function () {
+            Factory.startSmoke("intro");
+        });
+        $("#intro-1").on("impress:stepleave", function () {
+            Factory.stopSmoke("intro");
+        });
+        $("#outro-1").on("impress:stepenter", function () {
+            Factory.startSmoke("outro");
+        });
+        $("#outro-1").on("impress:stepleave", function () {
+            Factory .stopSmoke("outro");
+        });
 
-    WebSockets.addKeybindings();
-
-    console().init();
-});
+        Factory.enterFullScreen();
+    });
+}());
