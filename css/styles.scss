@@ -253,19 +253,19 @@
     }
 }
 
+#ws-code-5 {
+    pre {
+        @include border-radius-top(0);
+
+        border-top: 0;
+    }
+}
+
 #ws-code-6 {
     pre {
         @include border-radius-bottom(0);
 
         border-bottom: 0;
-    }
-}
-
-#ws-code-7 {
-    pre {
-        @include border-radius-top(0);
-
-        border-top: 0;
     }
 }
 

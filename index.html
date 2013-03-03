@@ -752,7 +752,7 @@
                 </p>
                 <p>
                     It's also very firewall friendly since a socket connection is initiated over a
-                    normal http request which is upgraded to a websocket.
+                    normal http request which is upgraded to a WebSocket.
                 </p>
                 <p>
                     But the main reason why this is so great for running a factory is...
@@ -790,16 +790,21 @@
             <pre><code data-language="java" data-src="src/websocket-1.java"></code></pre>
             <div class="notes">
                 <p>
-                    There is no official standard for Java yet. They are working on it but so far
-                    we are left in the hands of the different application servers. I know that
-                    Glassfish and Tomcat have there own implementations but we use Jetty in our
-                    solution.
+                    There is no official standard for Java yet. They are working on it through
+                    JSR-356 but so far we are left in the hands of the different application
+                    server vendors. Both Glassfish and Tomcat have there own implementation but we
+                    use Jetty for our solution.
                 </p>
                 <p>
-                    So this is how a client can look in WebSockets.
+                    The Jetty implementation is based on the Servlet API but instead of doing a
+                    doGet we do a doWebSocketConnect when the client requests a WebSocket
+                    connection. The only thing we need to do in the servlet is to return a WebSocket
+                    to the client. We can return different WebSockets depending on the protocol but
+                    in our case we always return the same type and we pass it a reference to a
+                    WebSocketManager which is a utility class that we have created.
                 </p>
                 <p>
-                    Describe the WebSocketServlet...
+                    So what does this WebSocketClient look like.
                 </p>
             </div>
         </div>
@@ -809,7 +814,14 @@
 
             <div class="notes">
                 <p>
-                    Describe the WebSocketClient...
+                    First of all it implements a OnTextMessage interface. WebSockets can be both
+                    binary and text based and we use text.
+                </p>
+                <p>
+                    The interface only have 3 methods. First onConnect where we store the actual
+                    connection to the client and then we add the client to a list of active clients.
+                    You will see why we need that later but let's just say that it's pretty useful
+                    to keep a list of all connected clients.
                 </p>
             </div>
         </div>
@@ -818,8 +830,21 @@
 
             <div class="notes">
                 <p>
-                    So what kind of message to we send over WebSockets? That's up to you but we have
-                    created a simple JSON protocol that we use and it looks like this.
+                    Next we have onClose where we just deregister the client.
+                </p>
+                <p>
+                    The final method in the interface is onMessage and this method gets called when
+                    the client sends a message to the server over the WebSocket. In our case we
+                    delegate the parsing and handling of that message to our utility manager.
+                </p>
+                <p>
+                    Finally we've also added a sendMessage method here which just sends a message
+                    over the connection that we stored earlier. This is the method that we use to
+                    send messages from the server to the client.
+                </p>
+                <p>
+                    So this message, what does that look like? That's up to you but we've created
+                    a simple JSON protocol that we use and it looks like this.
                 </p>
             </div>
         </div>
@@ -829,28 +854,23 @@
 
             <div class="notes">
                 <p>
+                    So here we have the message for our orderCreated event.
+                </p>
+                <p>
                     We have specified a sub protocol that we use to be able to send different kind
-                    of messages over the same WebSocket and we have also specified the command that
-                    we want to send.
+                    of messages over the same WebSocket and in the command we have specified the
+                    type of the event.
                 </p>
                 <p>
-                    So here we send a command to list all orders.
+                    Finally we have the actual data of the event and here we have the details for
+                    the created order.
                 </p>
                 <p>
-                    This is the response from the command. The same protocol and command but the
-                    result is sent as data here.
-                </p>
-                <p>
-                    Ok, so we have a way to send messages between the server and the client and we
-                    have a message format that we can use. How do we use this in a real application?
-                    Well in the Java-world we have a solution.
-                </p>
-                <p>
-                    We throw a bunch of annotations at it.
+                    Let's see how we can use this in our controller.
                 </p>
             </div>
         </div>
-        <div id="ws-code-7" class="step" data-x="9690" data-y="570">
+        <div id="ws-code-5" class="step" data-x="9690" data-y="465">
             <pre><code data-language="java" data-src="src/controller-2.java"></code></pre>
             <p class="links">
                 Get the code at <a href="http://github.com/joakimkemeny">github.com/joakimkemeny</a>
@@ -858,18 +878,24 @@
 
             <div class="notes">
                 <p>
-                    If we look at the createOrder method we can broadcast a message after an order
-                    is created. This is possible since we have registered all clients that connects
-                    to the server.
+                    Let's first inject the WebSocket utility manager that we used earlier and
+                    remember that we registered all of our clients through this manager and that
+                    means that in our createOrder method we can call a broadcast method on the
+                    manager to send a message to all connected clients.
                 </p>
                 <p>
-                    Maybe you wonder how this is done and but I have already been showing you a lot
-                    of code and I will show you more code so you can checkout the code at my Github
-                    page after this presentation. I have to warn you that this is demo code so be
-                    aware of that.
+                    Maybe you wonder how this manager is implemented but this presentation contains
+                    a lot of code and it's not done yet so I'm not going to show it to you. Instead
+                    I encourage you to checkout the code at my Github page after this presentation.
+                    I have to warn you that this is demo code so be aware of that.
                 </p>
                 <p>
-                    Before I get back to the demo I'll show you how it looks on the client side.
+                    So now we have a way to communicate from the server to the clients but I said
+                    that WebSockets is bidirectional so how do we implement that?
+                </p>
+                <p>
+                    Well we already have an API to communicate from the client to the server and
+                    that is the REST API so what we did was that we reused that.
                 </p>
             </div>
         </div>
@@ -879,9 +905,19 @@
 
             <div class="notes">
                 <p>
-                    So here we have the Spring controller again. We have added an annotation to
-                    specify that this controller can reached over the protocol order and if we look
-                    at the listOrders method this can be called with the command list.
+                    So back to the top of the controller again and what we want to do is to be
+                    able to call all methods over the WebSocket connection as well and since we use
+                    annotations for everything else we created a couple of annotations for that as
+                    well.
+                </p>
+                <p>
+                    So we annotate the Spring controller to make it respond the order protocol and
+                    then we also annotate the method to make it handle the list command.
+                </p>
+                <p>
+                    Behind the scenes we use some reflection magic but I'm not showing it to you but
+                    the same as before, the code is available so check it out. I just wanted you to
+                    know that it's possible to combine REST with WebSockets in a nice way.
                 </p>
             </div>
         </div>

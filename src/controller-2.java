@@ -1,3 +1,6 @@
+    @Autowired
+    private WebSocketManager webSocketManager;
+
     @ResponseBody
     @RequestMapping(value = "/api/order",
                     method = RequestMethod.POST,
