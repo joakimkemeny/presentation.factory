@@ -926,18 +926,25 @@
 
         <div id="demo-2" class="step" data-x="9690" data-y="1570">
             <div class="browser" data-src="http://localhost:8080"></div>
+
             <div class="notes">
                 <p>
                     So here we have the demo again. Let's bring up a different browser and to make
-                    this a little bit mor interesting I'l use my phone to prove that I'm not
+                    this a little bit more interesting. I'll use my phone to prove that I'm not
                     cheating.
                 </p>
                 <p>
                     Demo with the iPhone...
                 </p>
                 <p>
-                    So now we have created the server part for this application. REST, WebSockets
-                    and Spring MVC. How can we structure the code on the client side.
+                    So now we have created the server part for this application using REST,
+                    WebSockets and Spring MVC. Next we need to create a UI to handle this and since
+                    the client for this application is going to be a web application it will be
+                    written in JavaScript but that is not an excuse for writing bad code so we need
+                    a good way to structure our code.
+                </p>
+                <p>
+                    For this...
                 </p>
             </div>
         </div>
@@ -948,9 +955,10 @@
             <div class="center">
                 <h1>Backbone.js</h1>
             </div>
+
             <div class="notes">
                 <p>
-                    To do this on the client side we have chosen to use a library called Backbone.js
+                    ...we've chosen to use a framework called Backbone.js.
                 </p>
             </div>
         </div>
@@ -959,23 +967,24 @@
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-down ballon1">MV* library</div>
             </div>
+
             <div class="notes">
                 <p>
                     Backbone.js is one of these new cool MVC-like libraries that have popped up
                     in the last couple of year. They don't follow the model view controller pattern
-                    precisely but they you use some kind of variation and are normally called MV*
+                    precisely instead they use some kind of variation and are normally called MV*
                     libraries or frameworks.
                 </p>
                 <p>
                     There are a lot of alternatives out there today. Ember, Angular, Knockout and
                     Spine are some of the frameworks that you could checkout. So which one do you
-                    choose? Well it's the same as in the Java world, it depends. I choose Backbone
+                    choose? Well it's the same as in the Java world, it depends. We choose Backbone
                     since it seemed like the best choice at the time. Today I would seriously
                     consider Ember but I leave that to you. I know that Backbone works so I will
                     show you that today.
                 </p>
                 <p>
-                    So what i Backbone?
+                    So what is Backbone?
                 </p>
             </div>
         </div>
@@ -984,15 +993,16 @@
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
             </div>
+
             <div class="notes">
                 <p>
-                    Backbone have three parts that work together. First we the the models and
+                    Backbone have three parts that work together. First we have the models and
                     collection of models. This is where you hold the data on the client side.
-                    The orders and customers are some examples.
+                    Orders and customers are some examples of models.
                 </p>
                 <p>
                     These models and collections trigger events when they are changed. So we
-                    know when there is a new model, when a model is changed or when a model is
+                    know when there is a new order, when an order is changed or when an order is
                     deleted.
                 </p>
             </div>
@@ -1005,7 +1015,7 @@
             </div>
             <div class="notes">
                 <p>
-                    Next we have views and views are responsible for showing the models and other
+                    Next we have views. Views are responsible for showing the models and other
                     information on the screen.
                 </p>
                 <p>
@@ -1032,88 +1042,125 @@
                     models and showing them in the correct views.
                 </p>
                 <p>
-                    This is a very brief introduction to Backbone.
+                    This is a very brief introduction to Backbone and if you want more information
+                    you'll have to check it out your self at backbonejs.org.
                 </p>
                 <p>
-                    But you can always read more about it at backbonejs.org.
-                </p>
-                <p>
-                    So this is what it can look like.
+                    So let's start using Backbone by seeing how it can consume our REST API. For
+                    this we use the models and collections.
                 </p>
             </div>
         </div>
-        <div id="backbone-7" class="step" data-x="6690" data-y="1570">
+        <div id="backbone-6" class="step" data-x="6690" data-y="1570">
             <h1 class="small">Backbone Models / Collections</h1>
             <pre><code data-language="javascript" data-src="src/backbone-1.js"></code></pre>
 
             <div class="notes">
-                <p>Describe how models and collections are created...</p>
+                <p>
+                    Here you can see the order model. The only thing we have to do is to specify the
+                    endpoint for our REST API to let the model and collection know where to get and
+                    store the data.
+                </p>
+                <p>
+                    In this example I've also added some default values for new models.
+                </p>
+                <p>
+                    When our models and collections are created, we can use them call our API.
+                </p>
             </div>
         </div>
-
-
-        <div id="backbone-8" class="step" data-x="6690" data-y="2010">
+        <div id="backbone-7" class="step" data-x="6690" data-y="2010">
             <pre><code data-language="javascript" data-src="src/backbone-2.js"></code></pre>
 
             <div class="notes">
-                <p>Describe how we can get information...</p>
+                <p>
+                    Let's start with listOrders. The only thing we have to do is to create a new
+                    order collection and simply call fetch to get all orders.
+                </p>
             </div>
         </div>
-        <div id="backbone-9" class="step" data-x="6690" data-y="2120">
+        <div id="backbone-8" class="step" data-x="6690" data-y="2120">
             <pre><code data-language="javascript" data-src="src/backbone-3.js"></code></pre>
 
             <div class="notes">
-                <p>Describe how we create models...</p>
+                <p>
+                    Next we can create a new order model, pass it some values and simply call save
+                    to POST it to the server.
+                </p>
             </div>
         </div>
-        <div id="backbone-10" class="step" data-x="6690" data-y="2335">
+        <div id="backbone-9" class="step" data-x="6690" data-y="2335">
             <pre><code data-language="javascript" data-src="src/backbone-4.js"></code></pre>
 
             <div class="notes">
-                <p>Describe how we get models...</p>
+                <p>
+                    We can change a value and save it again to PUT the update on the server.
+                </p>
             </div>
         </div>
-        <div id="backbone-11" class="step" data-x="6690" data-y="2445">
+        <div id="backbone-10" class="step" data-x="6690" data-y="2445">
             <pre><code data-language="javascript" data-src="src/backbone-5.js"></code></pre>
+
             <div class="notes">
-                <p>Describe how we can remove models...</p>
                 <p>
-                    But we want to do better. We want to have the collections synced att all times.
-                    For Java we used annotations and for JavaScript we use events.
+                    Finally we can delete the order by calling destroy.
+                </p>
+                <p>
+                    That's how easy it is to consume our REST API from Backbone. The next step is
+                    to add WebSockets to the client as well.
                 </p>
             </div>
         </div>
 
-        <div id="ws-code-8" class="step" data-x="5190" data-y="2000">
+        <div id="ws-code-7" class="step" data-x="5190" data-y="2000">
             <h1 class="small">WebSockets (JavaScript)</h1>
             <pre><code data-language="javascript" data-src="src/websocket-1.js"></code></pre>
 
             <div class="notes">
-                <p>Describe the client...</p>
                 <p>
-                    Enough code for now, let's checkout the demo again.
+                    So first a look at the JavaScript API for working with WebSockets.
+                </p>
+                <p>
+                    As you can see, the interface is almost identical to the Jetty implementation on
+                    the Java side. We have onopen, onclose, onmessage and a send function.
+                </p>
+                <p>
+                    But in the same way and for the same reasons that we abstracted away the
+                    WebSocket stuff in Spring MVC we can make this easier to use for Backbone as
+                    well. For Spring MVC we used annotations but for Backbone we implement one
+                    WebSocket handler and let it communicate with the Backbone models using events.
+                </p>
+                <p>
+                    Let's see how that can look.
                 </p>
             </div>
         </div>
 
-        <div id="backbone-12" class="step" data-x="3690" data-y="2000">
+        <div id="backbone-11" class="step" data-x="3690" data-y="2000">
             <h1 class="small">WebSockets (Backbone)</h1>
             <pre><code data-language="javascript" data-src="src/backbone-6.js"></code></pre>
 
             <div class="notes">
-                <p>Describe how we subscribe to changes...</p>
+                <p>
+                    So here we have the order collection again.
+                </p>
             </div>
         </div>
-        <div id="backbone-13" class="step" data-x="3690" data-y="2220">
+        <div id="backbone-12" class="step" data-x="3690" data-y="2220">
             <pre><code data-language="javascript" data-src="src/backbone-7.js"></code></pre>
-        </div>
 
-        <div class="notes">
-            <p>Describe how we update the data...</p>
-            <p>
-                Again, this is a lot of code but its just to give you an idea of what you can do
-                and you can find the code at Github as I said earlier.
-            </p>
+            <div class="notes">
+                <p>
+                    All Backbone object have an initializer and we can use this to add event
+                    listeners. So here we can listen to events on the WebSocket handler and when
+                    an event with the protocol order and the command created is triggered we can use
+                    the data to update the model in the collection.
+                </p>
+                <p>
+                    Again, there is more code here that you don't see so but its just to give you an
+                    idea of what you can do and you can find the code at Github as I said earlier.
+                </p>
+            </div>
         </div>
 
         <!-- Demo --------------------------------------------------------------------------------->
@@ -1123,11 +1170,22 @@
 
             <div class="notes">
                 <p>
-                    Ok, now we are back at our demo application and let's see what the factory looks
-                    like for real.
+                    Ok. Back to our demo application again. Now it's time to see what the factory
+                    looks like for real.
                 </p>
                 <p>
-                    Describe the factory... it's not that far from the real factory.
+                    So here we have the factory. Remember that we are producing undefined stuff and
+                    to do that we take some amount of the different materials A1-A3 and B1-B4 and
+                    mix it together.
+                </p>
+                <p>
+                    So in this factory we have silos with the different materials. These materials
+                    are measured on two scales and when the correct amount have been measured the
+                    scales are emptied into some kind of mixer that we don't show in the demo.
+                </p>
+                <p>
+                    If we click on the scales they are activated. Let's run an order through the
+                    factory to see how it works.
                 </p>
                 <p>
                     So how does this work? Back to the overview again.
@@ -1171,6 +1229,9 @@
             </div>
 
             <div class="notes">
+                <p>
+                    Let's add the PLC to this picture.
+                </p>
             </div>
         </div>
         <div id="architecture-15" class="step invisible" data-x="3690" data-y="100">
@@ -1196,11 +1257,12 @@
             <div class="box uml-box box4">
                 PLC
             </div>
+
             <div class="notes">
                 <p>
-                    So now if we add a PLC to this picture. The PLC communicates with the server in
-                    some way. It's actually oer modbus TCP if anybody is interested. The server can
-                    read values from the PLC in some way and also set values in the PLC.
+                    The PLC communicates with the server in some way. It's actually over modbus TCP
+                    if anybody is interested. The server can read values from the PLC in some way
+                    and also set values in the PLC.
                 </p>
             </div>
         </div>
@@ -1300,8 +1362,9 @@
                 </p>
                 <p>
                     So now we have models that are in sync but as the application continues to grow
-                    it may get out of hand so the final piece for this puzzle is to create some kind
-                    of way to automate the ui changes as well and for that we use knockout.
+                    the UI to show the models may get out of hand so the final piece for this puzzle
+                    is to create some kind of way to automate UI changes as well and for that we
+                    use Knockout.
                 </p>
             </div>
         </div>
@@ -1312,11 +1375,12 @@
             <div class="center">
                 <h1>Knockout.js</h1>
             </div>
+
             <div class="notes">
                 <p>
-                    I talked about Knockout earlier but I don't think it is a good solution for
-                    models but for managing the UI it's great. It's a MVVM framework and it do two
-                    things that we use.
+                    I mentioned Knockout earlier but I didn't choose to use it as the base for our
+                    application since it's not really good for that but for managing the UI it's
+                    great. Knockout does its magic though two features.
                 </p>
             </div>
         </div>
@@ -1325,6 +1389,7 @@
                 <h1>Knockout.js</h1>
                 <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
             </div>
+
             <div class="notes">
                 <p>
                     It does declarative bindings...
@@ -1340,6 +1405,7 @@
             <p class="links">
                 Read more about Knockout at <a href="http://knockoutjs.com">knockoutjs.com</a>
             </p>
+
             <div class="notes">
                 <p>
                     ...and it does automatic UI refreshes. So we can tell the UI how it should be
@@ -1347,7 +1413,10 @@
                     updated.
                 </p>
                 <p>
-                    Read more about it...
+                    You can read more about it at knockoutjs.com.
+                </p>
+                <p>
+                    So now we have both Backbone and Knockout how can that work?
                 </p>
             </div>
         </div>
@@ -1356,11 +1425,10 @@
                 <h1>Knockout.js</h1>
                 <div class="box ballon ballon-down ballon1">Can work with Backbone…</div>
             </div>
+
             <div class="notes">
                 <p>
-                    To do that we use a glue called knockback and Knockback makes Backbone and
-                    Knockout play nice together. I just thought I let you know, you can read more
-                    about it here.
+                    Obviously it can work but we need some kind of glue to make them work together.
                 </p>
             </div>
         </div>
@@ -1374,23 +1442,28 @@
                 Read more about Knockback at
                 <a href="http://kmalakoff.github.com/knockback">kmalakoff.github.com/knockback</a>
             </p>
+
             <div class="notes">
                 <p>
-                    To do that we use a glue called knockback and Knockback makes Backbone and
-                    Knockout play nice together. I just thought I let you know, you can read more
-                    about it here.
+                    The glue that we use is called Knockback. I just thought I let you know since
+                    it complicates the code quite a bit but as usual when it gets complicated I
+                    leave it as an exercise to you.
                 </p>
             </div>
         </div>
         <div id="knockout-6" class="step" data-x="2000" data-y="2000">
             <h1 class="small">Knockout HTML</h1>
             <pre><code data-language="html" data-src="src/knockout-1.js"></code></pre>
+
             <div class="notes">
                 <p>
-                    Here is a small example of how it can look. Describe it...
+                    So here is some of the code for showing the order list. We can iterate over all
+                    orders in a table, bind the value of the properties of the order and even change
+                    the css based on the status of the order.
                 </p>
                 <p>
-                    So now we have backbone and knockout, how do they integrate?
+                    We also use it to do event handling. This can be done in both Backbone and
+                    Knockout but we choose to go with Knockout.
                 </p>
             </div>
 
@@ -1401,8 +1474,10 @@
 
             <div class="notes">
                 <p>
-                    So just a small example again to let you forget all about the terrible glue
-                    and instead see the code that creates the scales.
+                    Here is an other example and this is from the factory part. We show or hide the
+                    factory, and we do that animated, when we click on the button as you saw
+                    earlier. We also change the width of the scale progress bar based on the
+                    progress.
                 </p>
             </div>
         </div>
@@ -1415,7 +1490,7 @@
 
             <div class="notes">
                 <p>
-                    Time for my last demo and now I will try it again with the phone to let you
+                    Now it's time for my last demo and now I will try again with my phone to let you
                     see how it works.
                 </p>
             </div>
@@ -1427,6 +1502,7 @@
             <div class="center">
                 <h1>Conclusions</h1>
             </div>
+
             <div class="notes">
                 <p>
                     So that was the last demo and it's time to go to the conclusions. This was not
@@ -1436,7 +1512,7 @@
                     GWT or whatever framework is cool on the Java server side today. This is the
                     future.
                 </p>
-                <p>That beeing said it's not easy...</p>
+                <p>That being said it's not easy...</p>
             </div>
         </div>
         <div id="conclusion-2" class="step invisible" data-x="5000" data-y="3000">
@@ -1445,13 +1521,11 @@
                 <div class="box ballon ballon-down ballon1">It takes some hard work</div>
                 <div class="box ballon ballon-up ballon2">Frameworks need to catch up</div>
             </div>
+
             <div class="notes">
                 <p>
                     It takes some really hard work to pull it of and the frameworks and tools really
-                    need to catch up to handle these kind of applications. I talked about Ember
-                    earlier and I think they are on the right track. I didn't cover that in the
-                    presentation but I have actually duplicated the demo so it's also available
-                    Ember style if you want to check it out.
+                    need to catch up to handle these kind of applications.
                 </p>
             </div>
         </div>
@@ -1460,6 +1534,7 @@
                 <h1>Conclusions</h1>
                 <div class="box ballon ballon-down ballon3">JavaScript has its limitations</div>
             </div>
+
             <div class="notes">
                 <p>
                     Next problem is that JavaScript itself and the different implementations has its
@@ -1475,6 +1550,7 @@
                 <div class="box ballon ballon-down ballon4">It works great…</div>
                 <div class="box ballon ballon-up ballon5">…and it make other UIs feel old</div>
             </div>
+
             <div class="notes">
                 <p>
                     This works great and it really makes other UIs feel old and terrible and I
@@ -1499,13 +1575,12 @@
             <div class="notes">
                 <p>
                     That's all I got for you today. I hope you enjoyed it and if you want to know
-                    more
-                    about this and the project I'm working on you can catch me after the session. I
-                    can
-                    show you what the real factory looks like.
+                    more about this and the project I'm working on you can catch me after the
+                    session. I can show you what the real factory looks like.
                 </p>
                 <p>
-                    Don't forget my github repository and connect to me at Twitter. Thanks.
+                    Also checkout my Github repository, checkout Callista Enterprise and connect
+                    with me on Twitter. Thank you so much for coming.
                 </p>
             </div>
         </div>

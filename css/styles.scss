@@ -325,8 +325,7 @@
 
 #backbone-3,
 #backbone-4,
-#backbone-5,
-#backbone-6 {
+#backbone-5 {
     .ballon1 {
         right: 150px;
         top: 450px;
@@ -341,7 +340,7 @@
     }
 }
 
-#backbone-7 {
+#backbone-6 {
     pre {
         @include border-radius-bottom(0);
 
@@ -349,38 +348,38 @@
     }
 }
 
+#backbone-7,
 #backbone-8,
-#backbone-9,
+#backbone-9 {
+    margin-top: 200px;
+    pre {
+        @include border-radius-bottom(0);
+        @include border-radius-top(0);
+
+        border-bottom: 0;
+        border-top: 0;
+    }
+
+}
+
 #backbone-10 {
     margin-top: 200px;
     pre {
-        @include border-radius-bottom(0);
         @include border-radius-top(0);
 
-        border-bottom: 0;
         border-top: 0;
     }
-
 }
 
 #backbone-11 {
-    margin-top: 200px;
     pre {
-        @include border-radius-top(0);
+        @include border-radius-bottom(0);
 
-        border-top: 0;
+        border-bottom: 0;
     }
 }
 
 #backbone-12 {
-    pre {
-        @include border-radius-bottom(0);
-
-        border-bottom: 0;
-    }
-}
-
-#backbone-13 {
     pre {
         @include border-radius-top(0);
 
