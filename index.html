@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
 
     <meta charset="utf-8">
@@ -22,6 +22,26 @@
 <body>
     <div id="impress">
 
+        <!-- Hint step ------------------------------------------------------------------------- -->
+
+        <!--
+        <div id="hint" class="step hint invisible" data-x="0" data-y="0" data-scale="0.001">
+            <div>
+                <p><b>Hi there!</b></p>
+                <p>
+                    This presentation works best in Safari and Chrome, bad in Firefox and worst (if
+                    at all) in Opera and Internet Explorer.
+                </p>
+                <p>
+                    Use a <b>spacebar</b> or <b>arrow keys</b> to navigate, <b>f</b> for full screen
+                    and <b>p</b> to open speaker notes.
+                </p>
+                <p>So, why don't you press spacebar to get started. I hope you will like it.</p>
+                <p>/Joakim</p>
+            </div>
+        </div>
+        -->
+
         <!-- Intro -------------------------------------------------------------------------------->
 
         <div id="intro-1" class="step" data-x="0" data-y="0">
@@ -38,23 +58,26 @@
                     Hello and welcome to my presentation about running a real factory on WebSockets.
                 </p>
                 <p>
-                    Most of the presentations I hear about HTML5 and new web technologies are
-                    focused on games, markup semantics, cool stuff like audio and video and maybe
-                    some theoretical presentations on how WebSockets will be used in the future.
-                    I thought it would be a good idea to show how some of the new technologies that
-                    we have available today can be used to create something quite different.
+                    There are a lot of presentations about HTML5 and the new web technologies. Many
+                    of them are focused on creating games, how to create semantically correct markup
+                    and how to add audio and video. Recently these talks have shifted focus and now
+                    many start to talk about cooler stuff like WebSockets. However most of these
+                    talks are quite theoretical and often come to the conclusion that the
+                    technologies are not ready to be used yet. I'm using these technologies today
+                    and I thought it would be fun to show you how they can be used to create
+                    something quite different.
                 </p>
                 <p>
-                    My name is Joakim Kemeny and I work as a consultant at Omegapoint here in
-                    Gothenburg. My native tongue is Java but in the last couple of years I have
-                    specialized more and more on front end development so now it's mostly
-                    JavaScript, CSS and maybe some Objective-C but as you will see in this
-                    presentation they are connected so you will see both some Javacode as well as
-                    JavaScript.
+                    My name is Joakim Kemeny and I work as a consultant at Callista Enterprise here
+                    in Gothenburg. My native tongue is Java but for the last couple of years I've
+                    been specializing more and more on front end development so now it's mostly
+                    JavaScript, CSS and maybe some Objective-C, if I'm lucky. But as you will see in
+                    this presentation all of these languages are connected today so you will see
+                    both some Javacode as well as some JavaScript so I hope that doesn't scare you.
                 </p>
                 <p>
-                    So this presentation is based on the project that I'm currently working on and
-                    I will tell you a little bit more about that later but before we get too
+                    This presentation is based on the project that I'm currently working on and I
+                    will tell you a little bit more about it as we go along but before we get too
                     technical we need to answer the following question.
                 </p>
                 <p>
@@ -75,10 +98,10 @@
                     Well, there are all kinds of factories. Behind me you can see the boiler of a
                     paper mill. It's actually the silhouette of the paper mill in Bäckhammar where I
                     grew up and where I earned my living during the summers. It doesn't quite make
-                    me an expert in factories but at least I know what a factory can smell like.
+                    me and expert in factories but as least I know what a factory can smell like.
                 </p>
                 <p>
-                    So there are many different types of factories but one thing they all have in
+                    So there are many different kinds of factories but one thing they all have in
                     common is hardware.
                 </p>
             </div>
@@ -117,9 +140,9 @@
 
             <div class="notes">
                 <p>
-                    Silos, Pipes, Mixers, Conveyor belts... Coffee Makers. Yes all kinds of
-                    different hardware. But when I will talk about a factory today I mostly care
-                    about these two.
+                    Silos, Pipes, Mixers, Conveyor belts... Coffee Makers. All kind of different
+                    hardware. But when I will talk about a factory today I mostly care about these
+                    two.
                 </p>
             </div>
         </div>
@@ -133,13 +156,13 @@
 
             <div class="notes">
                 <p>
-                    ...the Input/Output units and the Progammable logic controllers. This IS a
+                    ...the input/output units and the programmable logic controllers. This IS a
                     factory to me.
                 </p>
                 <p>
                     The I/O units lets me talk to the hardware in the factory, it lets me read the
-                    current value of a scale, it lets me send commands such as empty scale. And this
-                    can be quite helpful.
+                    current value of a scale, it lets me send commands such as empty scale and this
+                    can be very helpful when you are trying to control a factory.
                 </p>
                 <p>
                     The PLC is used to control I/O units and to create sequences that actually can
@@ -162,15 +185,15 @@
 
             <div class="notes">
                 <p>
-                    And this is what I and I guess most of you do all day long. We create software.
-                    And the software in the case of a factory can be used to control the factory,
-                    to handle customers and orders, analyze samples of what the factory produces
-                    and a whole lot of other things.
+                    This is what I and I guess most of you do all day long. We create software. And
+                    the software in case of a factory can be used to control the factory, to handle
+                    customers and orders, analyze samples of what the factory produces and a whole
+                    lot of other things.
                 </p>
                 <p>
-                    This is what I will talk about today. We obviously need to talk the the PLCs but
-                    how that can be done in a smart way is a subject for an other time so I won't
-                    touch that today.
+                    This is what I will talk about today. We obviously need to talk to the PLCs but
+                    how that can be done in a smart way is the subject for an other talk so I won't
+                    touch on that today.
                 </p>
                 <p>
                     So let's see what I'm going to cover today.
@@ -190,9 +213,9 @@
 
             <div class="notes">
                 <p>
-                    I am going to cover three things. First I'm going to talk about managing orders.
-                    List, add and cancel for instance. I guess that this is not what you came
-                    for but it will lay the ground for the rest of the presentation and I actually
+                    I'm going to cover three things. First I'm going to talk about managing orders.
+                    List, add and cancel for instance. I guess that this is not what you came for
+                    but it will lay the groundwork for the rest of the presentation and I actually
                     think that you will find this part to be more interesting than you think.
                 </p>
             </div>
@@ -211,9 +234,14 @@
 
             <div class="notes">
                 <p>
-                    Next I will be talking about producing stuff. This is where it will start to
-                    look like a factory and since this whole presentation will be based upon demos
-                    you get to see both the code and the actual result running.
+                    Next I will be talking about producing stuff. In my current project we are
+                    building software to run concrete factories but I have simplified it for this
+                    presentation to just let the factory produce undefined stuff.
+                </p>
+                <p>
+                    This is where it will start to look and feel like a factory and since this
+                    whole presentation will be based on demos you'll get to see both the code and
+                    the actual running result.
                 </p>
             </div>
         </div>
@@ -236,14 +264,15 @@
             <div class="notes">
                 <p>
                     And finally I will show you how you can create a UI to handle this. And it
-                    shouldn't that hard, right?
+                    shouldn't be that hard, right?
                 </p>
                 <p>
                     I will be creating the UI and producing stuff at the same time so they will not
-                    be as separated as they are in this slide.
+                    be as separated as they are in this slide. But it's just to give you an
+                    overview.
                 </p>
                 <p>
-                    I hope this sounds interesting cause I've already taken up some of your time
+                    I hope this sounds interesting because I've already taken up some of your time
                     so let's get started for real.
                 </p>
             </div>
@@ -262,8 +291,8 @@
 
             <div class="notes">
                 <p>
-                    Let's start with managing order. This is of course the kind of systems that I
-                    think that a lot of you have build to some degree.
+                    Let's start with managing orders. This is of course the kind of systems that I
+                    think that a lot of you have built to some degree in some variation.
                 </p>
                 <p>
                     It usually involves a client and a server and the order system in the factory
@@ -360,7 +389,8 @@
                     There is nothing special about this at all and it can be solved using a normal
                     REST API as I guess that many of you are familiar with. It doesn't matter what
                     kind of technology you use on the server side here, choose the one you are
-                    comfortable with. But in these demos I will use Spring MVC.
+                    comfortable with. But in the demos I will use Spring MVC because that's what we
+                    are using in our solution.
                 </p>
             </div>
         </div>
@@ -369,7 +399,7 @@
 
         <div id="rest-1" class="step" data-x="5190" data-y="0">
             <h1 class="small">Spring MVC</h1>
-            <pre><code data-language="c" data-src="src/rest-1.java"></code></pre>
+            <pre><code data-language="java" data-src="src/rest-1.java"></code></pre>
 
             <div class="notes">
                 <p>
@@ -380,26 +410,26 @@
                     windows application? The server should not care about that.
                 </p>
                 <p>
-                    Describe list...
+                    We can list orders with a GET request to /api/order
                 </p>
                 <p>
-                    Describe create...
+                    We can create orders with a POST request /api/order
                 </p>
             </div>
         </div>
         <div id="rest-2" class="step" data-x="5190" data-y="600">
-            <pre><code data-language="c" data-src="src/rest-2.java"></code></pre>
+            <pre><code data-language="java" data-src="src/rest-2.java"></code></pre>
 
             <div class="notes">
                 <p>
-                    Describe update...
+                    We can update orders with a PUT request /api/order/{id}
                 </p>
                 <p>
-                    Describe delete...
+                    We can delete orders with a DELETE request to /api/order/{id}
                 </p>
                 <p>
-                    So that is our server API. Let's take a first look on our demo applikation that
-                    will use this API.
+                    So that is our server API and it is pretty strait forward. Let's take a first
+                    look at our demo application to see how this API can be used.
                 </p>
             </div>
         </div>
@@ -417,14 +447,15 @@
                     factory to some extent.
                 </p>
                 <p>
-                    So you can list the orders here. The orders have a target customer, a quantity
-                    and a status that will be used later.
+                    So you can see the list of orders here. The orders have a target customer, a
+                    quantity and a status that will be used later.
                 </p>
                 <p>
                     We can add a new order here, edit the order and finally also delete an order.
                 </p>
                 <p>
-                    So this is the application that we are going to build on today. Let's go back.
+                    So this is the application that we are going to build on today. There are some
+                    other buttons here that I will demonstrate later but let's go back.
                 </p>
             </div>
         </div>
@@ -451,10 +482,8 @@
 
             <div class="notes">
                 <p>
-                    So that was our server API and it was pretty strait forward.
-                </p>
-                <p>
-                    What happens when you add an other client to this picture?
+                    This was a normal client server solution but what happens when you add an other
+                    client to this picture?
                 </p>
             </div>
         </div>
@@ -484,7 +513,7 @@
 
             <div class="notes">
                 <p>
-                    Let's say that the first client is an administrator who enters order all day
+                    Let's say that the first client is an administrator who enters orders all day
                     long and the second client is an operator who is in charge taking the order and
                     making sure they get produced.
                 </p>
@@ -512,11 +541,11 @@
             <div class="box uml-box box3">
                 Client
                 <span>(operator)</span>
-
             </div>
+
             <div class="notes">
                 <p>
-                    Well first of all, both can list orders. Nothing special there.
+                    First of all, both can list orders. Nothing special there.
                 </p>
             </div>
         </div>
@@ -683,6 +712,9 @@
                 <p>
                     That leads us to the seconds question for today...
                 </p>
+                <p>
+                    What is WebSockets?
+                </p>
             </div>
         </div>
 
@@ -711,8 +743,9 @@
             <div class="notes">
                 <p>
                     And WebSockets is part of all the new cool technologies that is part of HTML5.
-                    This means that it's available in most modern browsers. The protocol have been
-                    stable since april so implementers are starting to catch up.
+                    This means that it's available in most modern browsers. To only exception is
+                    the default Android browser but you can use Chrome or Firefox instead. The
+                    protocol have been stable since april so implementers are starting to catch up.
                 </p>
                 <p>
                     So this means no plugins, so no Flash and no Java.
@@ -741,90 +774,131 @@
                 </p>
                 <p>
                     And the second thing is that it adds minimal overhead. Just a start and a stop
-                    byte for each message. This may not sounds like a big deal but let's look at an
-                    example to illustrate this.
+                    byte for each message and if you compare this to the normal HTTP headers that
+                    adds around 1000 bytes it's a huge deal.
+                </p>
+                <p>
+                    Let's look at how this can be implemented.
                 </p>
             </div>
         </div>
-        <!--<div id="websockets-4" class="step" data-x="3690" data-y="-2000">
-            <div class="slide">
-                <h1 class="small">Example</h1>
-                <ul>
-                    <li>Headers for this presentation is <b>730 bytes</b></li>
-                    <li>Let the factory have <b>100 objects</b></li>
-                    <li>Let the objects update every second</li>
-                </ul>
-                <ul>
-                    <li>Use HTTP polling = <b>73 000 bytes</b></li>
-                    <li>Using WebSockets = <b>400 bytes</b></li>
-                </ul>
-                <p>Waisted bandwidth = <b>0,55 Mbit/s / client</b></p>
-            </div>
-        </div>-->
 
         <!-- WebSockets Code ---------------------------------------------------------------------->
 
         <div id="ws-code-1" class="step" data-x="6690" data-y="-1000">
             <h1 class="small">WebSocketServlet (Jetty)</h1>
-            <pre><code data-language="c" data-src="src/websocket-1.java"></code></pre>
+            <pre><code data-language="java" data-src="src/websocket-1.java"></code></pre>
             <div class="notes">
                 <p>
-                    There is not official standard for Java yet.
+                    There is no official standard for Java yet. They are working on it but so far
+                    we are left in the hands of the different application servers. I know that
+                    Glassfish and Tomcat have there own implementations but we use Jetty in our
+                    solution.
                 </p>
                 <p>
-                    So how does the client look.
+                    So this is how a client can look in WebSockets.
+                </p>
+                <p>
+                    Describe the WebSocketServlet...
                 </p>
             </div>
         </div>
         <div id="ws-code-2" class="step" data-x="8190" data-y="-1000">
             <h1 class="small">WebSocketClient (Jetty)</h1>
-            <pre><code data-language="c" data-src="src/websocket-2.java"></code></pre>
-        </div>
-        <div id="ws-code-3" class="step" data-x="8190" data-y="-430">
-            <pre><code data-language="c" data-src="src/websocket-3.java"></code></pre>
+            <pre><code data-language="java" data-src="src/websocket-2.java"></code></pre>
+
             <div class="notes">
                 <p>
-                    So how does this messsage look like.
+                    Describe the WebSocketClient...
+                </p>
+            </div>
+        </div>
+        <div id="ws-code-3" class="step" data-x="8190" data-y="-430">
+            <pre><code data-language="java" data-src="src/websocket-3.java"></code></pre>
+
+            <div class="notes">
+                <p>
+                    So what kind of message to we send over WebSockets? That's up to you but we have
+                    created a simple JSON protocol that we use and it looks like this.
                 </p>
             </div>
         </div>
         <div id="ws-code-4" class="step" data-x="9690" data-y="-1000">
             <h1 class="small">Protocol</h1>
             <pre><code data-language="javascript" data-src="src/protocol-1.js"></code></pre>
-        </div>
-        <div id="ws-code-5" class="step" data-x="9690" data-y="-945">
-            <pre><code data-language="javascript" data-src="src/protocol-2.js"></code></pre>
+
             <div class="notes">
                 <p>
-                    Throw a bunch of annotations at it.
+                    We have specified a sub protocol that we use to be able to send different kind
+                    of messages over the same WebSocket and we have also specified the command that
+                    we want to send.
+                </p>
+                <p>
+                    So here we send a command to list all orders.
+                </p>
+                <p>
+                    This is the response from the command. The same protocol and command but the
+                    result is sent as data here.
+                </p>
+                <p>
+                    Ok, so we have a way to send messages between the server and the client and we
+                    have a message format that we can use. How do we use this in a real application?
+                    Well in the Java-world we have a solution.
+                </p>
+                <p>
+                    We throw a bunch of annotations at it.
                 </p>
             </div>
         </div>
-        <div id="ws-code-6" class="step" data-x="9690" data-y="0">
-            <h1 class="small">Spring MVC</h1>
-            <pre><code data-language="c" data-src="src/controller-1.java"></code></pre>
-        </div>
         <div id="ws-code-7" class="step" data-x="9690" data-y="570">
-            <pre><code data-language="c" data-src="src/controller-2.java"></code></pre>
+            <pre><code data-language="java" data-src="src/controller-2.java"></code></pre>
             <p class="links">
                 Get the code at <a href="http://github.com/joakimkemeny">github.com/joakimkemeny</a>
             </p>
+
             <div class="notes">
+                <p>
+                    If we look at the createOrder method we can broadcast a message after an order
+                    is created. This is possible since we have registered all clients that connects
+                    to the server.
+                </p>
+                <p>
+                    Maybe you wonder how this is done and but I have already been showing you a lot
+                    of code and I will show you more code so you can checkout the code at my Github
+                    page after this presentation. I have to warn you that this is demo code so be
+                    aware of that.
+                </p>
                 <p>
                     Before I get back to the demo I'll show you how it looks on the client side.
                 </p>
             </div>
         </div>
-        <div id="ws-code-8" class="step" data-x="9690" data-y="1570">
-            <h1 class="small">JavaScript</h1>
-            <pre><code data-language="javascript" data-src="src/websocket-1.js"></code></pre>
+        <div id="ws-code-6" class="step" data-x="9690" data-y="0">
+            <h1 class="small">WebSockets (Spring MVC)</h1>
+            <pre><code data-language="java" data-src="src/controller-1.java"></code></pre>
+
+            <div class="notes">
+                <p>
+                    So here we have the Spring controller again. We have added an annotation to
+                    specify that this controller can reached over the protocol order and if we look
+                    at the listOrders method this can be called with the command list.
+                </p>
+            </div>
         </div>
 
         <!-- Demo --------------------------------------------------------------------------------->
 
-        <div id="demo-2" class="step" data-x="8190" data-y="1570">
+        <div id="demo-2" class="step" data-x="9690" data-y="1570">
             <div class="browser" data-src="http://localhost:8080"></div>
             <div class="notes">
+                <p>
+                    So here we have the demo again. Let's bring up a different browser and to make
+                    this a little bit mor interesting I'l use my phone to prove that I'm not
+                    cheating.
+                </p>
+                <p>
+                    Demo with the iPhone...
+                </p>
                 <p>
                     So now we have created the server part for this application. REST, WebSockets
                     and Spring MVC. How can we structure the code on the client side.
@@ -834,36 +908,60 @@
 
         <!-- Backbone.js -------------------------------------------------------------------------->
 
-        <div id="backbone-1" class="step invisible" data-x="6690" data-y="1570">
+        <div id="backbone-1" class="step invisible" data-x="8190" data-y="1570">
             <div class="center">
                 <h1>Backbone.js</h1>
             </div>
+            <div class="notes">
+                <p>
+                    To do this on the client side we have chosen to use a library called Backbone.js
+                </p>
+            </div>
         </div>
-        <div id="backbone-2" class="step invisible" data-x="6690" data-y="1570">
+        <div id="backbone-2" class="step invisible" data-x="8190" data-y="1570">
             <div class="center">
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-down ballon1">MV* library</div>
             </div>
             <div class="notes">
                 <p>
-                    Lot of alternatives, ember, angular, knockout, spine.
+                    Backbone.js is one of these new cool MVC-like libraries that have popped up
+                    in the last couple of year. They don't follow the model view controller pattern
+                    precisely but they you use some kind of variation and are normally called MV*
+                    libraries or frameworks.
                 </p>
-                <p>Next Models</p>
+                <p>
+                    There are a lot of alternatives out there today. Ember, Angular, Knockout and
+                    Spine are some of the frameworks that you could checkout. So which one do you
+                    choose? Well it's the same as in the Java world, it depends. I choose Backbone
+                    since it seemed like the best choice at the time. Today I would seriously
+                    consider Ember but I leave that to you. I know that Backbone works so I will
+                    show you that today.
+                </p>
+                <p>
+                    So what i Backbone?
+                </p>
             </div>
         </div>
-        <div id="backbone-3" class="step invisible" data-x="6690" data-y="1570">
+        <div id="backbone-3" class="step invisible" data-x="8190" data-y="1570">
             <div class="center">
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
             </div>
             <div class="notes">
                 <p>
-                    Triggers events when changed.
+                    Backbone have three parts that work together. First we the the models and
+                    collection of models. This is where you hold the data on the client side.
+                    The orders and customers are some examples.
                 </p>
-                <p>Next Views...</p>
+                <p>
+                    These models and collections trigger events when they are changed. So we
+                    know when there is a new model, when a model is changed or when a model is
+                    deleted.
+                </p>
             </div>
         </div>
-        <div id="backbone-4" class="step invisible" data-x="6690" data-y="1570">
+        <div id="backbone-4" class="step invisible" data-x="8190" data-y="1570">
             <div class="center">
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
@@ -871,24 +969,16 @@
             </div>
             <div class="notes">
                 <p>
-                    Views can react to the events that the models trigger.
+                    Next we have views and views are responsible for showing the models and other
+                    information on the screen.
                 </p>
-            </div>
-        </div>
-        <div id="backbone-5" class="step invisible" data-x="6690" data-y="1570">
-            <div class="center">
-                <h1>Backbone.js</h1>
-                <div class="box ballon ballon-up ballon1">Models / Collections</div>
-                <div class="box ballon ballon-down ballon2">Views</div>
-                <div class="box ballon ballon-down ballon3">Routers</div>
-            </div>
-            <div class="notes">
                 <p>
-                    Finally routers. And you can read more....
+                    And since the models trigger events the views can listen to these events and
+                    react to them in some way.
                 </p>
             </div>
         </div>
-        <div id="backbone-6" class="step invisible" data-x="6690" data-y="1570">
+        <div id="backbone-5" class="step invisible" data-x="8190" data-y="1570">
             <div class="center">
                 <h1>Backbone.js</h1>
                 <div class="box ballon ballon-up ballon1">Models / Collections</div>
@@ -898,46 +988,115 @@
             <p class="links">
                 Read more about Backbone at <a href="http://backbonejs.org">backbonejs.org</a>
             </p>
+
             <div class="notes">
+                <p>
+                    Finally we have routers which are kind of the controllers in the MVC-model. The
+                    routers are used to map URL to a state in the application by getting the correct
+                    models and showing them in the correct views.
+                </p>
+                <p>
+                    This is a very brief introduction to Backbone.
+                </p>
+                <p>
+                    But you can always read more about it at backbonejs.org.
+                </p>
                 <p>
                     So this is what it can look like.
                 </p>
             </div>
         </div>
-        <div id="backbone-7" class="step" data-x="5190" data-y="1570">
-            <h1 class="small">Backbone Models (Collections)</h1>
+        <div id="backbone-7" class="step" data-x="6690" data-y="1570">
+            <h1 class="small">Backbone Models / Collections</h1>
             <pre><code data-language="javascript" data-src="src/backbone-1.js"></code></pre>
+
+            <div class="notes">
+                <p>Describe how models and collections are created...</p>
+            </div>
         </div>
-        <div id="backbone-8" class="step" data-x="5190" data-y="1835">
+
+
+        <div id="backbone-8" class="step" data-x="6690" data-y="2010">
             <pre><code data-language="javascript" data-src="src/backbone-2.js"></code></pre>
+
+            <div class="notes">
+                <p>Describe how we can get information...</p>
+            </div>
         </div>
-        <div id="backbone-9" class="step" data-x="5190" data-y="1945">
+        <div id="backbone-9" class="step" data-x="6690" data-y="2120">
             <pre><code data-language="javascript" data-src="src/backbone-3.js"></code></pre>
+
+            <div class="notes">
+                <p>Describe how we create models...</p>
+            </div>
         </div>
-        <div id="backbone-10" class="step" data-x="5190" data-y="2160">
+        <div id="backbone-10" class="step" data-x="6690" data-y="2335">
             <pre><code data-language="javascript" data-src="src/backbone-4.js"></code></pre>
+
+            <div class="notes">
+                <p>Describe how we get models...</p>
+            </div>
         </div>
-        <div id="backbone-11" class="step" data-x="5190" data-y="2305">
+        <div id="backbone-11" class="step" data-x="6690" data-y="2445">
             <pre><code data-language="javascript" data-src="src/backbone-5.js"></code></pre>
             <div class="notes">
+                <p>Describe how we can remove models...</p>
                 <p>
                     But we want to do better. We want to have the collections synced att all times.
                     For Java we used annotations and for JavaScript we use events.
                 </p>
             </div>
         </div>
-        <div id="backbone-12" class="step" data-x="3690" data-y="2000">
-            <h1 class="small">Backbone Models (Collections)</h1>
-            <pre><code data-language="javascript" data-src="src/backbone-6.js"></code></pre>
+
+        <div id="ws-code-8" class="step" data-x="5190" data-y="2000">
+            <h1 class="small">WebSockets (JavaScript)</h1>
+            <pre><code data-language="javascript" data-src="src/websocket-1.js"></code></pre>
+
+            <div class="notes">
+                <p>Describe the client...</p>
+                <p>
+                    Enough code for now, let's checkout the demo again.
+                </p>
+            </div>
         </div>
-        <div id="backbone-13" class="step" data-x="3690" data-y="2500">
+
+        <div id="backbone-12" class="step" data-x="3690" data-y="2000">
+            <h1 class="small">WebSockets (Backbone)</h1>
+            <pre><code data-language="javascript" data-src="src/backbone-6.js"></code></pre>
+
+            <div class="notes">
+                <p>Describe how we subscribe to changes...</p>
+            </div>
+        </div>
+        <div id="backbone-13" class="step" data-x="3690" data-y="2220">
             <pre><code data-language="javascript" data-src="src/backbone-7.js"></code></pre>
+        </div>
+
+        <div class="notes">
+            <p>Describe how we update the data...</p>
+            <p>
+                Again, this is a lot of code but its just to give you an idea of what you can do
+                and you can find the code at Github as I said earlier.
+            </p>
         </div>
 
         <!-- Demo --------------------------------------------------------------------------------->
 
         <div id="demo-3" class="step" data-x="3690" data-y="1000">
             <div class="browser" data-src="http://localhost:8080"></div>
+
+            <div class="notes">
+                <p>
+                    Ok, now we are back at our demo application and let's see what the factory looks
+                    like for real.
+                </p>
+                <p>
+                    Describe the factory... it's not that far from the real factory.
+                </p>
+                <p>
+                    So how does this work? Back to the overview again.
+                </p>
+            </div>
         </div>
 
         <!-- Architecture ------------------------------------------------------------------------->
@@ -1001,6 +1160,13 @@
             <div class="box uml-box box4">
                 PLC
             </div>
+            <div class="notes">
+                <p>
+                    So now if we add a PLC to this picture. The PLC communicates with the server in
+                    some way. It's actually oer modbus TCP if anybody is interested. The server can
+                    read values from the PLC in some way and also set values in the PLC.
+                </p>
+            </div>
         </div>
         <div id="architecture-16" class="step invisible" data-x="3690" data-y="100">
             <div class="box uml-box box1">
@@ -1026,6 +1192,11 @@
             </div>
 
             <div class="notes">
+                <p>
+                    So now the server can push WebSocket messages to the clients to let them know
+                    that the silos have been updated. Maybe their material level changed or
+                    something like that.
+                </p>
             </div>
         </div>
         <div id="architecture-17" class="step invisible" data-x="3690" data-y="100">
@@ -1055,6 +1226,7 @@
             </div>
 
             <div class="notes">
+                <p>Maybe the scale changed.</p>
             </div>
         </div>
         <div id="architecture-18" class="step invisible" data-x="3690" data-y="100">
@@ -1087,10 +1259,13 @@
 
             <div class="notes">
                 <p>
+                    The clients can also send commands to the server that gets forwarded to the PLC
+                    to maybe activate the scale as I did in the demo.
+                </p>
+                <p>
                     So now we have models that are in sync but as the application continues to grow
                     it may get out of hand so the final piece for this puzzle is to create some kind
                     of way to automate the ui changes as well and for that we use knockout.
-
                 </p>
             </div>
         </div>
@@ -1103,7 +1278,7 @@
             </div>
             <div class="notes">
                 <p>
-                    I talked about knockout earlier but I don't think it is a good solution for
+                    I talked about Knockout earlier but I don't think it is a good solution for
                     models but for managing the UI it's great. It's a MVVM framework and it do two
                     things that we use.
                 </p>
@@ -1114,21 +1289,13 @@
                 <h1>Knockout.js</h1>
                 <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
             </div>
-        </div>
-        <div id="knockout-3" class="step invisible" data-x="2000" data-y="1000">
-            <div class="center">
-                <h1>Knockout.js</h1>
-                <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
-                <div class="box ballon ballon-up ballon2">Automatic UI Refresh</div>
-            </div>
             <div class="notes">
                 <p>
-                    Read more about it...
+                    It does declarative bindings...
                 </p>
             </div>
-
         </div>
-        <div id="knockout-4" class="step invisible" data-x="2000" data-y="1000">
+        <div id="knockout-3" class="step invisible" data-x="2000" data-y="1000">
             <div class="center">
                 <h1>Knockout.js</h1>
                 <div class="box ballon ballon-down ballon1">Declarative Bindings</div>
@@ -1137,68 +1304,153 @@
             <p class="links">
                 Read more about Knockout at <a href="http://knockoutjs.com">knockoutjs.com</a>
             </p>
+            <div class="notes">
+                <p>
+                    ...and it does automatic UI refreshes. So we can tell the UI how it should be
+                    connected to the models and then we don't need to care any more, it will stay
+                    updated.
+                </p>
+                <p>
+                    Read more about it...
+                </p>
+            </div>
         </div>
-        <div id="knockout-5" class="step" data-x="2000" data-y="2000">
+        <div id="knockout-4" class="step invisible" data-x="2000" data-y="1000">
+            <div class="center">
+                <h1>Knockout.js</h1>
+                <div class="box ballon ballon-down ballon1">Can work with Backbone…</div>
+            </div>
+            <div class="notes">
+                <p>
+                    To do that we use a glue called knockback and Knockback makes Backbone and
+                    Knockout play nice together. I just thought I let you know, you can read more
+                    about it here.
+                </p>
+            </div>
+        </div>
+        <div id="knockout-5" class="step invisible" data-x="2000" data-y="1000">
+            <div class="center">
+                <h1>Knockout.js</h1>
+                <div class="box ballon ballon-down ballon1">Can work with Backbone…</div>
+                <div class="box ballon ballon-up ballon2">…with Knockback</div>
+            </div>
+            <p class="links">
+                Read more about Knockback at
+                <a href="http://kmalakoff.github.com/knockback">kmalakoff.github.com/knockback</a>
+            </p>
+            <div class="notes">
+                <p>
+                    To do that we use a glue called knockback and Knockback makes Backbone and
+                    Knockout play nice together. I just thought I let you know, you can read more
+                    about it here.
+                </p>
+            </div>
+        </div>
+        <div id="knockout-6" class="step" data-x="2000" data-y="2000">
             <h1 class="small">Knockout HTML</h1>
             <pre><code data-language="html" data-src="src/knockout-1.js"></code></pre>
             <div class="notes">
+                <p>
+                    Here is a small example of how it can look. Describe it...
+                </p>
                 <p>
                     So now we have backbone and knockout, how do they integrate?
                 </p>
             </div>
 
         </div>
-        <div id="knockout-6" class="step" data-x="2000" data-y="3000">
-            <h1 class="small">Backbone & Knockout</h1>
-            <pre><code data-language="javascript" data-src="src/knockout-2.js"></code></pre>
-            <p class="links">
-                Read more about Knockback at
-                <a href="http://kmalakoff.github.com/knockback">kmalakoff.github.com/knockback</a>
-            </p>
-        </div>
-        <div id="knockout-7" class="step" data-x="2000" data-y="4000">
+        <div id="knockout-7" class="step" data-x="2000" data-y="3000">
             <h1 class="small">Knockout HTML</h1>
             <pre><code data-language="html" data-src="src/knockout-3.js"></code></pre>
+
+            <div class="notes">
+                <p>
+                    So just a small example again to let you forget all about the terrible glue
+                    and instead see the code that creates the scales.
+                </p>
+            </div>
         </div>
 
 
         <!-- Demo --------------------------------------------------------------------------------->
 
-        <div id="demo-4" class="step" data-x="3500" data-y="4000">
+        <div id="demo-4" class="step" data-x="3500" data-y="3000">
             <div class="browser" data-src="http://localhost:8080"></div>
+
+            <div class="notes">
+                <p>
+                    Time for my last demo and now I will try it again with the phone to let you
+                    see how it works.
+                </p>
+            </div>
         </div>
 
         <!-- Conclusion --------------------------------------------------------------------------->
 
-        <div id="conclusion-1" class="step" data-x="5000" data-y="4000">
+        <div id="conclusion-1" class="step" data-x="5000" data-y="3000">
             <div class="center">
                 <h1>Conclusions</h1>
             </div>
+            <div class="notes">
+                <p>
+                    So that was the last demo and it's time to go to the conclusions. This was not
+                    an all Java talk as you may have hoped for but this is the way applications work
+                    now. Now we have an API that we can use from JavaScript as I've shown you today
+                    but you could just as easy have created a native app. So stop caring about JSF,
+                    GWT or whatever framework is cool on the Java server side today. This is the
+                    future.
+                </p>
+                <p>That beeing said it's not easy...</p>
+            </div>
         </div>
-        <div id="conclusion-2" class="step invisible" data-x="5000" data-y="4000">
+        <div id="conclusion-2" class="step invisible" data-x="5000" data-y="3000">
             <div class="center">
                 <h1>Conclusions</h1>
                 <div class="box ballon ballon-down ballon1">It takes some hard work</div>
                 <div class="box ballon ballon-up ballon2">Frameworks need to catch up</div>
             </div>
+            <div class="notes">
+                <p>
+                    It takes some really hard work to pull it of and the frameworks and tools really
+                    need to catch up to handle these kind of applications. I talked about Ember
+                    earlier and I think they are on the right track. I didn't cover that in the
+                    presentation but I have actually duplicated the demo so it's also available
+                    Ember style if you want to check it out.
+                </p>
+            </div>
         </div>
-        <div id="conclusion-3" class="step invisible" data-x="5000" data-y="4000">
+        <div id="conclusion-3" class="step invisible" data-x="5000" data-y="3000">
             <div class="center">
                 <h1>Conclusions</h1>
                 <div class="box ballon ballon-down ballon3">JavaScript has its limitations</div>
             </div>
+            <div class="notes">
+                <p>
+                    Next problem is that JavaScript itself and the different implementations has its
+                    limitations. Especially the event loop and the single threaded nature of
+                    JavaScript can be really tricky sometimes.
+                </p>
+                <p>However...</p>
+            </div>
         </div>
-        <div id="conclusion-4" class="step invisible" data-x="5000" data-y="4000">
+        <div id="conclusion-4" class="step invisible" data-x="5000" data-y="3000">
             <div class="center">
                 <h1>Conclusions</h1>
                 <div class="box ballon ballon-down ballon4">It works great…</div>
                 <div class="box ballon ballon-up ballon5">…and it make other UIs feel old</div>
             </div>
+            <div class="notes">
+                <p>
+                    This works great and it really makes other UIs feel old and terrible and I
+                    hope that people start to adopt these kind of architectures more because they
+                    rock!
+                </p>
+            </div>
         </div>
 
         <!-- Bye ---------------------------------------------------------------------------------->
 
-        <div id="outro-1" class="step" data-x="5000" data-y="5000">
+        <div id="outro-1" class="step" data-x="5000" data-y="4000">
             <h2>Thank you for coming</h2>
             <h1>WebSockets</h1>
             <h3>Joakim Kemeny</h3>
@@ -1207,11 +1459,27 @@
             <img src="img/callista.png" class="logotype">
             <img src="img/backhammar.png" class="factory">
             <canvas id="outro-smoke" class="smoke" height="744" width="1000"></canvas>
+
+            <div class="notes">
+                <p>
+                    That's all I got for you today. I hope you enjoyed it and if you want to know
+                    more
+                    about this and the project I'm working on you can catch me after the session. I
+                    can
+                    show you what the real factory looks like.
+                </p>
+                <p>
+                    Don't forget my github repository and connect to me at Twitter. Thanks.
+                </p>
+            </div>
         </div>
+
+        <!-- Overview step --------------------------------------------------------------------- -->
+
+        <div id="overview" class="step" data-x="5000" data-y="2000" data-scale="10"></div>
 
     </div>
 
     <script src="js/scripts.min.js"></script>
-
 </body>
 </html>

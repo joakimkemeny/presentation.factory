@@ -4,7 +4,7 @@
                     consumes = "application/json")
     public Order createOrder(@RequestBody Order order) {
         …
-        webSocketManager.broadcast("order", "added", order);
+        webSocketManager.broadcast("order", "created", order);
     }
 
     …

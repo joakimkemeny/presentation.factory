@@ -1,13 +1,7 @@
-    resetFromData : function (data) {
-        this.reset(data);
+    initialize : function () {
+        this.listenTo(webSocket, "order:created", this.update);
+        this.listenTo(webSocket, "order:updated", this.update);
     },
 
-    updateFromData : function (data) {
-        var model = this.get(data.id);
-        if (model) {
-            model.set(data);
-        } else {
-            this.add(data);
-        }
-    }
+    update : function (data) { … }
 });

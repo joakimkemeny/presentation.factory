@@ -1,5 +1,5 @@
-var order1 = new Order.Model({
+var order = new Order.Model({
     customer : "Bo Gren",
     quantity : 100
 });
-orders.create(order1);
+order.save()

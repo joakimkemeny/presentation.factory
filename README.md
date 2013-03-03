@@ -1,12 +1,18 @@
 # Presentation.Factory
 
-This is the presentation files and demos for the presentation **Running a real factory on WebSockets**
+This is the presentation files and demos for the presentation **Running a real factory on
+WebSockets**
 
 ## Abstract
 
-Audio and video tags are great. Using header and article to make the web more semantic is really welcome. But the real benefit of using HTML5 comes with all the new techniques and API:s. One of the most interesting is WebSockets.
+Audio and video tags are great. Using header and article to make the web more semantic is really
+welcome. But the real benefit of using HTML5 comes with all the new techniques and API:s. One of the
+most interesting is WebSockets.
 
-WebSockets will let you create a whole new category of web applications. In this presentation Joakim will use the experiences from one of his projects to answer the question: Is it possible to run a real factory using Java, JavaScript and WebSockets? Hint: Yes, it is and it works great; Joakim will show you how.
+WebSockets will let you create a whole new category of web applications. In this presentation Joakim
+will use the experiences from one of his projects to answer the question: Is it possible to run a
+real factory using Java, JavaScript and WebSockets? Hint: Yes, it is and it works great; Joakim will
+show you how.
 
 ## Known issues
 
@@ -15,11 +21,13 @@ WebSockets will let you create a whole new category of web applications. In this
 * The presentation doesn't look good in Firefox.
 * The source code doesn't show in Chrome unless served from a web server.
 
-Long story short: It's made for Safari, I present it using Safari so Safari is probably the best way to watch this presentation :-) Maybe I'll fix it in the future, maybe not.
+Long story short: It's made for Safari, I present it using Safari so Safari is probably the best
+way to watch this presentation :-) Maybe I'll fix it in the future, maybe not.
 
 ## Contact
 
-If you have any questions or if you want the live version of this presentation you can contact me on Twitter [@joakimkemeny](http://twitter.com/joakimkemeny).
+If you have any questions or if you want the live version of this presentation you can contact me on
+Twitter [@joakimkemeny](http://twitter.com/joakimkemeny).
 
 ## License
 

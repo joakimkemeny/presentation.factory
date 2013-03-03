@@ -1,7 +1,12 @@
 var Order = {};
 
 Order.Model = Backbone.Model.extend({
-    idAttribute : "id"
+    urlRoot : "/api/order",
+
+    defaults : {
+        customer : null,
+        quantity : 100
+    }
 });
 
 Order.Collection = Backbone.Collection.extend({

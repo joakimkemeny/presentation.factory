@@ -21,7 +21,7 @@
     }
     h3 {
         margin-left: 500px;
-        margin-top: 120px;
+        margin-top: 100px;
     }
     h4 {
         margin-left: 500px;
@@ -253,23 +253,6 @@
     }
 }
 
-#ws-code-4 {
-    pre {
-        @include border-radius-bottom(0);
-
-        border-bottom: 0;
-    }
-}
-
-#ws-code-5 {
-    margin-top: 200px;
-    pre {
-        @include border-radius-top(0);
-
-        border-top: 0;
-    }
-}
-
 #ws-code-6 {
     pre {
         @include border-radius-bottom(0);
@@ -406,14 +389,24 @@
 }
 
 #knockout-2,
-#knockout-3,
-#knockout-4 {
+#knockout-3 {
     .ballon1 {
         left: 150px;
         bottom: 450px;
     }
     .ballon2 {
         right: 250px;
+        top: 450px;
+    }
+}
+#knockout-4,
+#knockout-5 {
+    .ballon1 {
+        left: 100px;
+        bottom: 450px;
+    }
+    .ballon2 {
+        right: 150px;
         top: 450px;
     }
 }

@@ -40,7 +40,7 @@ public class OrderManager {
     public Order createOrder(Order newOrder) {
         newOrder.setId(++orderId);
         orders.add(newOrder);
-        webSocketManager.broadcast("order", "added", newOrder);
+        webSocketManager.broadcast("order", "created", newOrder);
         return newOrder;
     }
 

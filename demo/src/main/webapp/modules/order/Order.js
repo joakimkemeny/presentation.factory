@@ -18,7 +18,7 @@ define([
 
         initialize : function () {
             webSocket.on("order:list", this.resetFromData, this);
-            webSocket.on("order:added", this.updateFromData, this);
+            webSocket.on("order:created", this.updateFromData, this);
             webSocket.on("order:updated", this.updateFromData, this);
             webSocket.on("order:deleted", this.removeFromData, this);
 
