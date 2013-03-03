@@ -23,11 +23,7 @@ define([
                 Backbone.history.navigate("order", true);
             };
             vm.save = function () {
-                if (view.model.isNew()) {
-                    view.collection.create(view.model, { wait : true });
-                } else {
-                    view.model.save(null, { wait : true });
-                }
+                view.model.save();
                 Backbone.history.navigate("order", true);
             };
 

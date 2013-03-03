@@ -30,10 +30,13 @@ define([
             $(element).toggle(Knockout.utils.unwrapObservable(valueAccessor()));
         },
         update : function (element, valueAccessor) {
-            Knockout.utils.unwrapObservable(valueAccessor()) ? $(element).slideDown() : $(element).slideUp();
+            if (Knockout.utils.unwrapObservable(valueAccessor())) {
+                $(element).slideDown();
+            } else {
+                $(element).slideUp();
+            }
         }
     };
-    Knockout.virtualElements.allowedBindings.fadeSlide = true;
 
     return Factory;
 });

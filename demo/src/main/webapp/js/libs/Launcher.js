@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
 
     baseUrl : "js",
 

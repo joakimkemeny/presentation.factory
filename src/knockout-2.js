@@ -1,11 +1,10 @@
-var OrderList = Backbone.View.extend({
-
-    render : function () {
-        this.$el.html(orderListTemplate);
-
-        Knockout.applyBindings({
-            orders : Knockback.
-                collectionObservable(this.collection)
-        }, this.el);
-    }
-});
+<div data-bind="foreach: collection, visibleSlide: !hidden()">
+    …
+    <div class="scale">
+        <div data-bind="visible: !emptying(), style: {width: w}"
+             class="filling">
+            <span data-bind="text: current"></span>
+        </div>
+        …
+    </div>
+</div>
